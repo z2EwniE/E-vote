@@ -8,8 +8,8 @@ const DB_NAME = "phploginregistersystem";
 
 const APP_NAME = "E-Vote System";
 
-const APP_URL = "http://localhost/phploginsystem";
-const EMAIL_CONFIRMATION = true;
+const APP_URL = "http://localhost/E-vote/";
+const EMAIL_CONFIRMATION = false;
 const MAX_LOGIN_ATTEMPTS = 12;
 
 const IS_SMTP = true;
