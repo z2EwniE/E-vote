@@ -86,7 +86,7 @@
                         Privacy</a>
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../../logout.php">Log out</a>
+                    <a class="dropdown-item" href="../logout.php">Log out</a>
                 </div>
             </li>
         </ul>
