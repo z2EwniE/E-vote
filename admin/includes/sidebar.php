@@ -32,19 +32,19 @@
             <li class="sidebar-header">
                 Home
             </li>
-            <li class="sidebar-item active">
+            <li class="sidebar-item" >
                 <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
                 </a>
                 <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-                    <li class="sidebar-item active"><a class='sidebar-link' href='/'>Analytics</a></li>
+                    <li class="sidebar-item" ><a class='sidebar-link' href='index.php'>Analytics</a></li>
 
                 </ul>
             </li>
 
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='/pages-profile'>
+                <a class='sidebar-link' href='pages-profile.php'>
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
@@ -131,4 +131,5 @@
         
         </ul>
     </div>
-</nav>
+    </nav>
+ 
