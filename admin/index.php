@@ -110,6 +110,7 @@
 												<div class="row">
 													<div class="col mt-0">
 														<h5 class="card-title">Votes At This Time</h5>
+														
 													</div>
 
 													<div class="col-auto">
@@ -118,7 +119,7 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3" id="voteCount">0</h1>
 
 											</div>
 										</div>
@@ -655,6 +656,27 @@
 			});
 		});
 	</script>
+
+
+	<script>
+    function fetchVoteCount() {
+       
+        fetch('/api/votes')
+            .then(response => response.json())
+            .then(data => {
+                
+                document.getElementById('voteCount').textContent = data.count;
+            })
+            .catch(error => console.error('Error fetching vote count:', error));
+    }
+
+    // Fetch the vote count every 5 seconds
+    setInterval(fetchVoteCount, 5000);
+    
+   
+    fetchVoteCount();
+	</script>
+
 	<!--
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
