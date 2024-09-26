@@ -68,19 +68,19 @@
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="activity"></i> 
-                College of Arts and Sciences
+                CAS
             </a>
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="briefcase"></i> 
-                College of Business Management and Entrepreneurship
+               CBME
             </a>
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="edit"></i> 
-                College of Teacher Education
+               CTE
             </a>
             </li>
         </ul>
@@ -104,25 +104,25 @@
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="book"></i> 
-                First Year
+                1st Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="book-open"></i> 
-                Second Year
+               2nd Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="layers"></i> 
-                Third Year
+                3rd Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href="/icons-feather">
                 <i class="align-middle" data-feather="award"></i> 
-                Fourth Year
+               4th Year
             </a></li>
                 <br>
                 <br>
