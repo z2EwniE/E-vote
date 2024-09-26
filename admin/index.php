@@ -57,7 +57,7 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Enrolled Students</h5>
+														<h5 class="card-title">Enrollees</h5>
 													</div>
 
 													<div class="col-auto">
@@ -73,7 +73,7 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Total of not Registred Studets</h5>
+														<h5 class="card-title">Total Unregistered Students</h5>
 													</div>
 
 													<div class="col-auto">
@@ -109,7 +109,7 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Total Votes for today</h5>
+														<h5 class="card-title">Votes At This Time</h5>
 													</div>
 
 													<div class="col-auto">
@@ -258,10 +258,10 @@
 								<table class="table table-borderless my-0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th class="d-none d-xxl-table-cell">Company</th>
-											<th class="d-none d-xl-table-cell">Author</th>
-											<th>Status</th>
+											<th>Student Name</th>
+											<th class="d-none d-xxl-table-cell">ID Number</th>
+											<th class="d-none d-xl-table-cell">Year Level</th>
+											<th>Course</th>
 											<th class="d-none d-xl-table-cell">Action</th>
 										</tr>
 									</thead>
