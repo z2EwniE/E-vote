@@ -66,19 +66,19 @@
     </a>
     <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href="cas.php">
                 <i class="align-middle" data-feather="activity"></i> 
                 CAS
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href="cbme.php">
                 <i class="align-middle" data-feather="briefcase"></i> 
                CBME
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href="cte.php">
                 <i class="align-middle" data-feather="edit"></i> 
                CTE
             </a>
@@ -102,25 +102,25 @@
     </a>
     <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="book"></i> 
                 1st Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="book-open"></i> 
                2nd Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="layers"></i> 
                 3rd Year
             </a></li></ul>
             <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="/icons-feather">
+            <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="award"></i> 
                4th Year
             </a></li>
