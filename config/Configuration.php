@@ -4,7 +4,7 @@
 const DB_HOST = "localhost";
 const DB_USER = "root";
 const DB_PASS = "";
-const DB_NAME = "phploginregistersystem";
+const DB_NAME = "evote";
 
 const APP_NAME = "E-Vote System";
 
