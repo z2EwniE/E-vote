@@ -43,18 +43,18 @@
 
 					<div class="row mb-2 mb-xl-3">
 						<div class="col-auto d-none d-sm-block">
-							<h3><strong>Profile</strong></h3>
+							<h3><strong>Partylist Name</strong></h3>
 						</div>
 
                         <div class="row justify-content-center">
     <div class="col-md-3 col-xl-3">
         <div class="card mb-3">
             <div class="card-header">
-                <h5 class="card-title mb-0">Profile Details</h5>
+                <h5 class="card-title mb-0">Candidate Detail</h5>
             </div>
             <div class="card-body text-center">
                 <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                <h5 class="card-title mb-0">qoshima</h5>
+                <h5 class="card-title mb-0">goofy</h5>
                 <div class="text-muted mb-2">Lead ajax</div>
                 <div>
                     <a class="btn btn-primary btn-sm" href="#">Follow</a>
@@ -63,26 +63,12 @@
             </div>
             <hr class="my-0" />
             <div class="card-body">
-                <h5 class="h6 card-title">Skills</h5>
-                <a href="#" class="badge bg-primary me-1 my-1">HTML</a>
-                <a href="#" class="badge bg-primary me-1 my-1">JavaScript</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Sass</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Angular</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Vue</a>
-                <a href="#" class="badge bg-primary me-1 my-1">React</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Redux</a>
-                <a href="#" class="badge bg-primary me-1 my-1">UI</a>
-                <a href="#" class="badge bg-primary me-1 my-1">UX</a>
-            </div>
-            <hr class="my-0" />
-            <div class="card-body">
                 <h5 class="h6 card-title">About</h5>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives in <a href="#">Jan lang sa gedli</a></li>
-                    <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <a href="#">PH.com</a></li>
-                    <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Under the sea</a></li>
-                </ul>
-            </div>
+                <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+    
+         </div>
+
+           
             <hr class="my-0" />
             <div class="card-body">
                 <h5 class="h6 card-title">Elsewhere</h5>
@@ -96,14 +82,16 @@
         </div>
     </div>
 
+    <!--a-->
+    
           <div class="col-md-4 col-xl-3">
         <div class="card mb-3">
             <div class="card-header">
-                <h5 class="card-title mb-0">Profile Details</h5>
+                <h5 class="card-title mb-0">Candidate Detail</h5>
             </div>
             <div class="card-body text-center">
                 <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                <h5 class="card-title mb-0">qoshima</h5>
+                <h5 class="card-title mb-0">siakol</h5>
                 <div class="text-muted mb-2">Lead ajax</div>
                 <div>
                     <a class="btn btn-primary btn-sm" href="#">Follow</a>
@@ -112,26 +100,11 @@
             </div>
             <hr class="my-0" />
             <div class="card-body">
-                <h5 class="h6 card-title">Skills</h5>
-                <a href="#" class="badge bg-primary me-1 my-1">HTML</a>
-                <a href="#" class="badge bg-primary me-1 my-1">JavaScript</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Sass</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Angular</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Vue</a>
-                <a href="#" class="badge bg-primary me-1 my-1">React</a>
-                <a href="#" class="badge bg-primary me-1 my-1">Redux</a>
-                <a href="#" class="badge bg-primary me-1 my-1">UI</a>
-                <a href="#" class="badge bg-primary me-1 my-1">UX</a>
-            </div>
-            <hr class="my-0" />
-            <div class="card-body">
-                <h5 class="h6 card-title">About</h5>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives in <a href="#">Jan lang sa gedli</a></li>
-                    <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <a href="#">PH.com</a></li>
-                    <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Under the sea</a></li>
-                </ul>
-            </div>
+        <h5 class="h6 card-title">About</h5>
+        <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+  
+        </div>
+
             <hr class="my-0" />
             <div class="card-body">
                 <h5 class="h6 card-title">Elsewhere</h5>
@@ -144,6 +117,7 @@
                   </div>
               </div>
                  </div>
+    </div>
             </div>
 
 

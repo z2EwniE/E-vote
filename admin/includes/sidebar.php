@@ -50,7 +50,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='/pages-profile'>
+                <a class='sidebar-link' href='candidates.php'>
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Candidates</span>
                 </a>
             </li>
