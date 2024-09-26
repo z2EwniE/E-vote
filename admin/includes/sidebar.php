@@ -51,7 +51,7 @@
 
             <li class="sidebar-item">
                 <a class='sidebar-link' href='/pages-profile'>
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Candidates</span>
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Candidates</span>
                 </a>
             </li>
 

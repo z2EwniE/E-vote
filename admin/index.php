@@ -62,7 +62,7 @@
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="user"></i>
+															<i class="align-middle" data-feather="users"></i>
 														</div>
 													</div>
 												</div>
@@ -78,7 +78,7 @@
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
+															<i class="align-middle" data-feather="user-x"></i>
 														</div>
 													</div>
 												</div>
