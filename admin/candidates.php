@@ -38,91 +38,318 @@
             <?php
                 include_once 'includes/navbar.php';
             ?>
-			<main class="content">
+			<main class="content" style="background-color: #1A1A1A">
 				<div class="container-fluid p-0">
 
 					<div class="row mb-2 mb-xl-3">
 						<div class="col-auto d-none d-sm-block">
-							<h3><strong>Partylist Name</strong></h3>
+							<h3 style="color: #FFAC1C"><strong>Partylist Name</strong></h3>
 						</div>
 
-                        <div class="row justify-content-center">
-    <div class="col-md-3 col-xl-3">
-        <div class="card mb-3">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Candidate Detail</h5>
-            </div>
-            <div class="card-body text-center">
-                <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                <h5 class="card-title mb-0">goofy</h5>
-                <div class="text-muted mb-2">Lead ajax</div>
-                <div>
-                    <a class="btn btn-primary btn-sm" href="#">Follow</a>
-                    <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                        <div class="container-fluid p-0">
+    <!-- First row centered -->
+    <div class="row justify-content-center mb-3">
+        <!-- First card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">goofy</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
                 </div>
             </div>
-            <hr class="my-0" />
-            <div class="card-body">
-                <h5 class="h6 card-title">About</h5>
-                <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
-    
-         </div>
+        </div>
 
-           
-            <hr class="my-0" />
-            <div class="card-body">
-                <h5 class="h6 card-title">Elsewhere</h5>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
-                    <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
-                    <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
-                    <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
-                </ul>
+        <!-- Second card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">siakol</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">ezwifi</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--a-->
-    
-          <div class="col-md-4 col-xl-3">
-        <div class="card mb-3">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Candidate Detail</h5>
-            </div>
-            <div class="card-body text-center">
-                <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                <h5 class="card-title mb-0">siakol</h5>
-                <div class="text-muted mb-2">Lead ajax</div>
-                <div>
-                    <a class="btn btn-primary btn-sm" href="#">Follow</a>
-                    <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+    <!-- Second row centered -->
+    <div class="row justify-content-center">
+        <!-- 1st card here -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">balls</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
                 </div>
             </div>
-            <hr class="my-0" />
-            <div class="card-body">
-        <h5 class="h6 card-title">About</h5>
-        <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
-  
+        </div>
+          <!-- 2nd card here -->
+                          <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">siakol</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- 3rd card -->
+            <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">siakol</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>  
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-            <hr class="my-0" />
-            <div class="card-body">
-                <h5 class="h6 card-title">Elsewhere</h5>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
-                    <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
-                    <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
-                    <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
-                   </ul>
-                  </div>
-              </div>
-                 </div>
     </div>
+</div>
+<div class="container-fluid p-0">
+ <!-- Third row centered -->
+ <div class="row justify-content-center">
+         <!-- 1st card here -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">balls</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
             </div>
-
-
-
-
+        </div>
+          <!-- 2nd card here -->
+                          <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">siakol</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 3rd card here -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Candidate Detail</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="img/avatars/qoshima.jpg" alt="qoshima" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h5 class="card-title mb-0">balls</h5>
+                    <div class="text-muted mb-2">Lead ajax</div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
+                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <span class="badge bg-secondary me-1 my-1">Candidate Position:</span>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><span class="fas fa-globe fa-fw me-1"></span> <a href="#">staciehall.co</a></li>
+                        <li class="mb-1"><span class="fab fa-twitter fa-fw me-1"></span> <a href="#">Twitter</a></li>
+                        <li class="mb-1"><span class="fab fa-facebook fa-fw me-1"></span> <a href="#">Facebook</a></li>
+                        <li class="mb-1"><span class="fab fa-instagram fa-fw me-1"></span> <a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
                     <!--end of pages -->
 
@@ -158,7 +385,7 @@
 			</footer>
 		</div>
 	</div>
-
+    <script src="js/app.js"></script>   
 </body>
 
 </html>
