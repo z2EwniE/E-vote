@@ -66,14 +66,14 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
+												<h1 class="mt-1 mb-3">2382</h1>
 											</div>
 										</div>
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title"># of Students</h5>
+														<h5 class="card-title">Total of not Registred Studets</h5>
 													</div>
 
 													<div class="col-auto">
@@ -92,16 +92,16 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Pondo</h5>
+														<h5 class="card-title">Total Registered Students</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="dollar-sign"></i>
+															<i class="align-middle" data-feather="check-circle"></i>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
+												<h1 class="mt-1 mb-3">5230</h1>
 
 											</div>
 										</div>
@@ -114,7 +114,7 @@
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="shopping-cart"></i>
+															<i class="align-middle" data-feather="clipboard"></i>
 														</div>
 													</div>
 												</div>
@@ -126,7 +126,7 @@
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="col-xl-6 col-xxl-7">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
@@ -172,7 +172,7 @@
 											</div>
 										</div>
 									</div>
-									<h5 class="card-title mb-0">Total Votes</h5>
+									<h5 class="card-title mb-0">Total Votes</h5>	
 								</div>
 								<div class="card-body d-flex">
 									<div class="align-self-center w-100">
@@ -224,7 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h5 class="card-title mb-0">Monthly Sales</h5>
+                                    <h5 class="card-title mb-0">Monthly Registered Students</h5>
                                 </div>
                                 <div class="card-body d-flex w-100">
                                     <div class="align-self-center chart chart-lg">
@@ -522,7 +522,7 @@
 				data: {
 					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 					datasets: [{
-						label: "Sales ($)",
+						label: "Voter",
 						fill: true,
 						backgroundColor: window.theme.id === "light" ? gradientLight : gradientDark,
 						borderColor: window.theme.primary,
@@ -757,7 +757,7 @@
       if(localStorage.getItem('popState') !== 'shown'){
         window.notyf.open({
           type: "success",
-          message: "Get access to all 500+ components and 45+ pages with AdminKit PRO. <u><a class=\"text-white\" href=\"https://adminkit.io/pricing\" target=\"_blank\">More info</a></u> 🚀",
+          message: "Welcome to Admin Site. <u><a class=\"text-white\" " target=\"_blank\">More info</a></u> 🚀",
           duration: 10000,
           ripple: true,
           dismissible: false,

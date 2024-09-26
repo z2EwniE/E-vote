@@ -13,7 +13,7 @@ if (isset($_GET["ref_"])) {
 }
 
 if ($login->isLoggedIn()) {
-    header("Location: admin/index.html");
+    header("Location: admin/index.php");
     die();
 }
 

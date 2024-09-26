@@ -49,22 +49,42 @@
                 </a>
             </li>
 
+            <li class="sidebar-item">
+                <a class='sidebar-link' href='/pages-profile'>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Candidates</span>
+                </a>
+            </li>
 
             <li class="sidebar-header">
-                Components
+               Programs
             </li>
 
             <li class="sidebar-item">
-                <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                    <span class="sidebar-badge badge bg-light">1.500+</span>
-                </a>
-                <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class='sidebar-link' href='/icons-feather'>Feather</a></li>
-                    <li class="sidebar-item"><a class='sidebar-link' href='/icons-font-awesome'>Font Awesome <span
-                                class="sidebar-badge badge bg-primary">Pro</span></a></li>
-                </ul>
+    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Departments</span>
+        <!-- <span class="sidebar-badge badge bg-light">1.500+</span> -->
+    </a>
+    <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="activity"></i> 
+                College of Arts and Sciences
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="briefcase"></i> 
+                College of Business Management and Entrepreneurship
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="edit"></i> 
+                College of Teacher Education
+            </a>
             </li>
+        </ul>
+        </li>
 
             <li class="sidebar-item">
                 <a class='sidebar-link' href='/tables-bootstrap'>
@@ -72,9 +92,43 @@
                 </a>
             </li>
 
+        <li class="sidebar-header">
+               Election Results
+            </li>
 
+            <li class="sidebar-item">
+    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Total Votes</span>
+    </a>
+    <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="book"></i> 
+                First Year
+            </a></li></ul>
+            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="book-open"></i> 
+                Second Year
+            </a></li></ul>
+            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="layers"></i> 
+                Third Year
+            </a></li></ul>
+            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/icons-feather">
+                <i class="align-middle" data-feather="award"></i> 
+                Fourth Year
+            </a></li>
+                <br>
+                <br>
+
+
+        
         </ul>
-
-
     </div>
 </nav>
