@@ -42,18 +42,24 @@
                 </ul>
             </li>
 
+            <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                Election
+            </li>   
+            
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='pages-profile.php'>
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                <a class='sidebar-link' href='/.php'>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Partylist</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='candidates.php'>
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Candidates</span>
+                <a class='sidebar-link' href='/.php'>
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Partylist</span>
                 </a>
             </li>
+            </ul>
 
             <li class="sidebar-header">
                Programs
