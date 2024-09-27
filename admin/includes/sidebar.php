@@ -47,7 +47,6 @@
                 Election
             </li>   
             
-
             <li class="sidebar-item">
                 <a class='sidebar-link' href='/.php'>
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Partylist</span>
@@ -58,19 +57,20 @@
                 <a class='sidebar-link' href='/.php'>
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Partylist</span>
                 </a>
-            </li>
+            
             </ul>
-
+            </li>
+            <ul class="sidebar-nav">
             <li class="sidebar-header">
                Programs
             </li>
 
             <li class="sidebar-item">
-    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
+    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link">
         <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Departments</span>
         <!-- <span class="sidebar-badge badge bg-light">1.500+</span> -->
     </a>
-    <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href="cas.php">
                 <i class="align-middle" data-feather="activity"></i> 
@@ -98,12 +98,13 @@
                 </a>
             </li>
 
+            <ul class="sidebar-nav">
         <li class="sidebar-header">
                Election Results
             </li>
 
             <li class="sidebar-item">
-    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
+    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link">
         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Total Votes</span>
     </a>
     <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
