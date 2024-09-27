@@ -84,6 +84,8 @@
             <main class="content">
 				<div class="container-fluid p-0">
 
+                
+
 					<div class="mb-3">
 						<h1 class="h3 d-inline align-middle">College of Arts and Science</h1><a class="badge bg-primary ms-2" 
 							target="_blank">Red Dragons<i class="fas fa-fw fa-external-link-alt"></i></a>
@@ -216,7 +218,7 @@
 		</div>
 	</div>
 	<script src="js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <!-- Custom Script for Search and Sort -->
         <script>
@@ -246,7 +248,7 @@
 
         for (let i = 1; i < tr.length; i++) {
             let td = tr[i].getElementsByTagName("td")[1];  // Assuming you're searching in the second column
-            
+
             if (td) {
                 let txtValue = td.textContent || td.innerText;
 
