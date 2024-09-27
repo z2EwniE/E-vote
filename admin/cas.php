@@ -246,7 +246,7 @@
 
         for (let i = 1; i < tr.length; i++) {
             let td = tr[i].getElementsByTagName("td")[1];  // Assuming you're searching in the second column
-
+            
             if (td) {
                 let txtValue = td.textContent || td.innerText;
 

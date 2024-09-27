@@ -18,7 +18,7 @@
 	 <link href="css/light.css" rel="stylesheet">
 
 	<style>
-		body {
+		body {	
 			opacity: 0;
 		}
 	</style>
@@ -667,7 +667,7 @@
                 document.getElementById('voteCount').textContent = data.count;
             })
             .catch(error => console.error('Error fetching vote count:', error));
-    }
+    	}
 
     // Fetch the vote count every 5 seconds
     setInterval(fetchVoteCount, 5000);
