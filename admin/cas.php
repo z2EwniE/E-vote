@@ -225,14 +225,14 @@
         let input = event.target.value;
 
         
-        let formattedInput = input.replace(/[^0-9eE-]/g, '');
-        let eCount = (formattedInput.match(/[eE]/g) || []).length;
+        let formattedInput = input.replace(/[^0-9E-]/g, '');
+        let eCount = (formattedInput.match(/[E]/g) || []).length;
         if (eCount > 1) {
             formattedInput = formattedInput.slice(0, formattedInput.lastIndexOf('E') + 1);
         }
 
         if (formattedInput.length > 9) {
-            formattedInput = formattedInput.slice(0, 9);  // Limit to 8 characters
+            formattedInput = formattedInput.slice(0, 9);  // Limit to 9 characters
         }
 
         event.target.value = formattedInput;  // Update the input field
