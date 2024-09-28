@@ -21,9 +21,6 @@ body.my-login-page {
 
 }
 
-.my-login-page .brand img {
-	width: 100%;
-}
 
 .my-login-page .card-wrapper {
 	width: 400px;
@@ -33,6 +30,7 @@ body.my-login-page {
 	border-color: transparent;
 	box-shadow: 0 4px 8px rgba(0,0,0,.05);
 }
+
 
 .my-login-page .card.fat {
 	padding: 10px;

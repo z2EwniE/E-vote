@@ -42,23 +42,43 @@ if ($login->isRememberSet()) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/my-login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-9/assets/css/login-9.css">
     <!--    Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
-</head>
 
-<body class="my-login-page">
-<section class="h-100">
-    <div class="container h-100">
-        <div class="row justify-content-md-center h-100">
-            <div class="card-wrapper">
-                <div class="brand">
-                    <img src="assets/images/logo/E-vote.jpg" alt="logo">
-                </div>
-                <div class="card fat">
-                    <div class="card-body">
+
+    
+</head>
+   
+    <body class="my-login-page">
+    <section class="bg-primary py-3 py-md-5 py-xl-8">
+    
+    <div class="container">
+    <div class="row gy-4 align-items-center">
+      <div class="col-12 col-md-6 col-xl-7">
+        <div class="d-flex justify-content-center text-bg-primary">
+          <div class="col-12 col-xl-9">
+          <h2 class="h1 mb-4">We make digital products that drive you to stand out.</h2>
+            <p class="lead mb-5">We write words, take photos, make videos, and interact with artificial intelligence.</p>
+            <div class="text-endx">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-grip-horizontal" viewBox="0 0 16 16">
+                <path d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+              </svg>
+              </div>
+          </div>
+        </div>
+      </div>
                         <?php if (!$login->isRememberSet()): ?>
-                        <h4 class="card-title">Login to <?= APP_NAME ?> </h4>
+                            
+                            <div class="col-12 col-md-6 col-xl-5">
+                 <div class="card border-0 rounded-4">
+             <div class="card-body p-3 p-md-4 p-xl-5">
+              <div class="row">
+               <div class="col-12">
+                 <div class="mb-4">
+
                         <?php else: ?>
                             <h4 class="card-title">Login as <?= htmlentities(
                                 $row["username"]
@@ -70,48 +90,59 @@ if ($login->isRememberSet()) {
                             ) ?>">
 
                             <?php if (!$login->isRememberSet()): ?>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input id="username" type="text" class="form-control" name="username" value="" autofocus>
-                            </div>
+                                <form action="#!">
+                            <div class="row gy-3 overflow-hidden">
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+
+                         <input type="username" class="form-control" name="username" id="username" placeholder="abdul" required>
+                    <label for="username" class="form-label">username</label>
+                  </div>
+                </div>
+                                
                             <?php else: ?>
                                 <input id="username" type="hidden" class="form-control" name="username" value="<?= $row[
                                     "username"
                                 ] ?>" autofocus>
                             <?php endif; ?>
+                         
+                            <div class="col-12">
+                            <div class="form-floating mb-3">
 
-                            <div class="form-group">
-                                <label for="password">Password
-                                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal" class="float-right">
-                                        Forgot Password?
-                                    </a>
-                                </label>
-                                <input id="password" type="password" class="form-control" name="password" data-eye>
+                            <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required data-eye>
+                            <label for="password" class="form-label">Password</label>
+
+                        </div>
+                    </div>
                             </div>
-
+                                 
+                                
                             <?php if (!$login->isRememberSet()): ?>
-                            <div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
-										<label for="remember" class="custom-control-label">Remember Me</label>
-									</div>
-								</div>
+                             <div class="col-12">
+                  <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                    <label class="form-check-label text-secondary" for="remember_me">
+                      Keep me logged in
+                    </label>
+                  </div>
+                </div>
                             <?php endif; ?>
-                            <div class="form-group m-0">
+                            <div class="col-12">
+                            <div class="d-grid">
                                 <button type="submit" id="login_button" class="btn btn-primary btn-block">
                                      Log in
                                 </button>
-                            </div>
+                                </div>
+                </div>
+              </div>
+            </form>
                             <div class="mt-4 text-center">
                             <?php if (!$login->isRememberSet()): ?>
                                 Don't have an account? <a href="register.php">Create One</a>
                                 <?php else: ?>
                                     Not your account? <a href="login.php?ref_">Log in</a>
                                 <?php endif; ?>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
                 <div class="footer">
                     Copyright &copy; <?= date("Y") ?> &mdash; <?= APP_NAME ?>
                 </div>
@@ -132,10 +163,10 @@ if ($login->isRememberSet()) {
                         </button>
                     </div>
                     <div class="modal-body m-3">
-                        <p class="mb-1">To continue, please enter your email for recovery.</p>
+                        <p class="mb-1">To continue, please enter your username for recovery.</p>
                         <div class="form-group">
-                            <label for="forgotPasswordEmail">Email</label>
-                            <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="Enter your email">
+                            <label for="forgotPasswordusername">username</label>
+                            <input type="username" id="forgotPasswordusername" class="form-control" placeholder="Enter your username">
                         </div>
                     </div>
                     <div class="modal-footer">
