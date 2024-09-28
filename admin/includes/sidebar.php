@@ -104,28 +104,28 @@
             </li>
 
             <li class="sidebar-item">
-    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link">
+    <a data-bs-target="#total_votes" data-bs-toggle="collapse" class="sidebar-link">
         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Total Votes</span>
     </a>
-    <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+    <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="book"></i> 
                 1st Year
             </a></li></ul>
-            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+            <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="book-open"></i> 
                2nd Year
             </a></li></ul>
-            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+            <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="layers"></i> 
                 3rd Year
             </a></li></ul>
-            <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+            <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
             <a class="sidebar-link" href=".php">
                 <i class="align-middle" data-feather="award"></i> 
