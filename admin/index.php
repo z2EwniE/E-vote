@@ -700,7 +700,7 @@
       if(localStorage.getItem('popState') !== 'shown'){
         window.notyf.open({
           type: "success",
-          message: "Welcome to Admin Site. <u><a class=\"text-white\" " target=\"_blank\">More info</a></u> 🚀",
+          message: "Welcome to Admin Site. <u><a class=\"text-white\" target=\"_blank\">More info</a></u> 🚀",
           duration: 10000,
           ripple: true,
           dismissible: false,
