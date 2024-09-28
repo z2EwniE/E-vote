@@ -90,8 +90,8 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xl-8">
-							<div class="card">
+                    <div class="col-xl-12">
+                    <div class="card">
 								<div class="card-header pb-0">
 									<div class="card-actions float-end">
 										<div class="dropdown position-relative">
