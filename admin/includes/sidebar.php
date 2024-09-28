@@ -32,12 +32,12 @@
             <li class="sidebar-header">
                 Home
             </li>
-            <li class="sidebar-item active" >
+            <li class="sidebar-item">
                 <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
                 </a>
                 <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-                    <li class="sidebar-item active " ><a class='sidebar-link' href='index.php'>Analytics</a></li>
+                    <li class="sidebar-item" ><a class='sidebar-link' href='index.php'>Analytics</a></li>
 
                 </ul>
             </li>
@@ -48,55 +48,17 @@
             </li>   
             
             <li class="sidebar-item">
-                <a class='sidebar-link' href='/.php'>
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Partylist</span>
+                <a class='sidebar-link' href='#'>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Candidates</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='/.php'>
+                <a class='sidebar-link' href='#'>
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Partylist</span>
                 </a>
             
             </ul>
-            </li>
-            <ul class="sidebar-nav">
-            <li class="sidebar-header">
-               Programs
-            </li>
-
-            <li class="sidebar-item">
-    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link">
-        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Departments</span>
-        <!-- <span class="sidebar-badge badge bg-light">1.500+</span> -->
-    </a>
-        <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-        <li class="sidebar-item">
-            <a class="sidebar-link" href="cas.php">
-                <i class="align-middle" data-feather="activity"></i> 
-                CAS
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link" href="cbme.php">
-                <i class="align-middle" data-feather="briefcase"></i> 
-               CBME
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link" href="cte.php">
-                <i class="align-middle" data-feather="edit"></i> 
-               CTE
-            </a>
-            </li>
-        </ul>
-        </li>
-
-            <li class="sidebar-item">
-                <a class='sidebar-link' href='/tables-bootstrap'>
-                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-                </a>
-            </li>
 
             <ul class="sidebar-nav">
         <li class="sidebar-header">
@@ -137,6 +99,46 @@
 
         
         </ul>
+            </li>
+            <ul class="sidebar-nav">
+            <li class="sidebar-header">
+               Programs
+            </li>
+
+            <li class="sidebar-item">
+    <a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link">
+        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Departments</span>
+        <!-- <span class="sidebar-badge badge bg-light">1.500+</span> -->
+    </a>
+        <ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="cas.php">
+                <i class="align-middle" data-feather="activity"></i> 
+                CAS
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="cbme.php">
+                <i class="align-middle" data-feather="briefcase"></i> 
+               CBME
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="cte.php">
+                <i class="align-middle" data-feather="edit"></i> 
+               CTE
+            </a>
+            </li>
+        </ul>
+        </li>
+
+            <li class="sidebar-item">
+                <a class='sidebar-link' href='/tables-bootstrap'>
+                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+                </a>
+            </li>
+
+   
     </div>
     </nav>
  
