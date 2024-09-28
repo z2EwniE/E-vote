@@ -13,7 +13,7 @@ if (isset($_GET["ref_"])) {
 }
 
 if ($login->isLoggedIn()) {
-    header("Location: admin/index.php");
+    header("Location: //index.php");
     die();
 }
 
@@ -48,8 +48,6 @@ if ($login->isRememberSet()) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
 
-
-    
 </head>
    
     <body class="my-login-page">

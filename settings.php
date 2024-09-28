@@ -1,5 +1,5 @@
 <?php
-include_once 'init.php';
+include_once 'config/init.php';
 
 if (!$login->isLoggedIn()) {
     header('Location: login.php' );
@@ -19,7 +19,7 @@ if (!$login->isLoggedIn()) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard | E-Basura Monitoring System</title>
+    <title>E-Vote System</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@ if (!$login->isLoggedIn()) {
 </head>
 <body class="nav-fixed">
 
-<?php include __DIR__ . '/templates/topnav.php'; ?>
+<?php include __DIR__ . '/includes/navbar.php'; ?>
 <div id="layoutSidenav">
-    <?php include __DIR__ . '/templates/sidenav.php'; ?>
+    <?php include __DIR__ . '/includes/sidebar.php'; ?>
     <div id="layoutSidenav_content">
         <main>
             <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
