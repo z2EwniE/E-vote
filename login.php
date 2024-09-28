@@ -105,13 +105,21 @@ if ($login->isRememberSet()) {
                                     "username"
                                 ] ?>" autofocus>
                             <?php endif; ?>
-                         
+                              
+                          
+                          
                             <div class="col-12">
                             <div class="form-floating mb-3">
-
+                                        
                             <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required data-eye>
+                            
                             <label for="password" class="form-label">Password</label>
-
+                            <div class="form-group">
+                                <label for="password">
+                                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal" class="float-right">
+                                        Forgot Password?
+                                    </a>
+                       
                         </div>
                     </div>
                             </div>
