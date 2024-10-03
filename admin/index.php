@@ -480,7 +480,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a href="https://github.com/z2EwniE" target="_blank" class="text-muted"><strong>Calvskie</strong></a> &copy;
+								<a target="_blank" class="text-muted"><strong>eVote System/strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
@@ -700,7 +700,7 @@
       if(localStorage.getItem('popState') !== 'shown'){
         window.notyf.open({
           type: "success",
-          message: "Welcome to Admin Site. <u><a class=\"text-white\" " target=\"_blank\">More info</a></u> 🚀",
+          message: "Welcome to Admin Site. <u><a class=\"text-white\" target=\"_blank\">More info</a></u> 🚀",
           duration: 10000,
           ripple: true,
           dismissible: false,
