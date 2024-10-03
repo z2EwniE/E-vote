@@ -21,6 +21,13 @@ body.my-login-page {
 
 }
 
+.custom-bg {
+	background-color: #1A1A1A;
+    background-size: cover;
+    background-position: center;
+
+}
+
 
 .my-login-page .card-wrapper {
 	width: 400px;

@@ -48,20 +48,40 @@ if ($login->isRememberSet()) {
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
 
+            <style>
+                @font-face {
+                    font-family: 'Poppins';
+                    src: url('admin/fonts/Poppins-Regular.ttf')
+                        format('truetype'); 
+                    font-weight: normal;
+                    font-style: normal;
+                    
+                }
+                
+                body.my-login-page{
+                    font-family: 'Poppins', sans-serif;
+                   
+                }
+                .card-wrapper {
+                        max-width: 400px;
+                        margin: 0;
+                }
+            </style>
 
             
         </head>
         
             <body class="my-login-page">
-            <section class="bg-primary py-3 py-md-5 py-xl-8">
-            
+            <section class="custom-bg py-3 py-md-5 py-xl-8">
             <div class="container">
             <div class="row gy-4 align-items-center">
             <div class="col-12 col-md-6 col-xl-7">
-                <div class="d-flex justify-content-center text-bg-primary">
+                <div class="d-flex justify-content-center" style="background-color: #1A1A1A; color: #FE8040;">
                 <div class="col-12 col-xl-9">
-                <h2 class="h1 mb-4">We make digital products that drive you to stand out.</h2>
-                    <p class="lead mb-5">We write words, take photos, make videos, and interact with artificial intelligence.</p>
+                <img class="img-fluid rounded mb-4" loading="lazy" src="./assets/images/logo/E-vote.jpg" width="245" height="80" alt="BootstrapBrain Logo">
+                <hr class="border-primary-subtle mb-4">
+                <h2 class="h1 mb-4">The goal of this study is to develop a new way of Evote machine.</h2>
+                    <p class="lead mb-5">Zero cost for student who are unable to buy an data inside the campus.</p>
                     <div class="text-endx">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-grip-horizontal" viewBox="0 0 16 16">
                         <path d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
