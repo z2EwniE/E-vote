@@ -311,27 +311,27 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0">
 														<div class="bg-light rounded-2">
-															<img class="p-2" src="img/icons/brand-2.svg">
+															<!-- <img class="p-2" src="img/icons/brand-2.svg"> -->
 														</div>
 													</div>
 													<div class="flex-grow-1 ms-3">
-														<strong>Project Bongo</strong>
+														<strong>Renald Lorenzana</strong>
 														<div class="text-muted">
-															Web
+															CTE
 														</div>
 													</div>
 												</div>
 											</td>
 											<td class="d-none d-xxl-table-cell">
-												<strong>Cellophane Transportation</strong>
+												<strong>E20-22141</strong>
 												<div class="text-muted">
-													Transportation
+													
 												</div>
 											</td>
 											<td class="d-none d-xl-table-cell">
-												<strong>William Harris</strong>
+												<strong>BSEMME</strong>
 												<div class="text-muted">
-													HTML, JS, Vue
+													3rd Year
 												</div>
 											</td>
 											<td>
@@ -351,27 +351,27 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0">
 														<div class="bg-light rounded-2">
-															<img class="p-2" src="img/icons/brand-3.svg">
+															<!-- <img class="p-2" src="img/icons/brand-3.svg"> -->
 														</div>
 													</div>
 													<div class="flex-grow-1 ms-3">
-														<strong>Project Canary</strong>
+														<strong>Daniel Padilpat</strong>
 														<div class="text-muted">
-															Web, UI/UX Design
+															CBME
 														</div>
 													</div>
 												</div>
 											</td>
 											<td class="d-none d-xxl-table-cell">
-												<strong>Clemens</strong>
+												<strong>E20-66541</strong>
 												<div class="text-muted">
-													Insurance
+													
 												</div>
 											</td>
 											<td class="d-none d-xl-table-cell">
-												<strong>Sharon Lessman</strong>
+												<strong>BSBA</strong>
 												<div class="text-muted">
-													HTML, JS, Laravel
+													2nd Year
 												</div>
 											</td>
 											<td>
@@ -391,27 +391,27 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0">
 														<div class="bg-light rounded-2">
-															<img class="p-2" src="img/icons/brand-4.svg">
+															<!-- <img class="p-2" src="img/icons/brand-4.svg"> -->
 														</div>
 													</div>
 													<div class="flex-grow-1 ms-3">
-														<strong>Project Edison</strong>
+														<strong>Jannie Gads</strong>
 														<div class="text-muted">
-															UI/UX Design
+															CAS
 														</div>
 													</div>
 												</div>
 											</td>
 											<td class="d-none d-xxl-table-cell">
-												<strong>Affinity Investment Group</strong>
+												<strong>E22-55021</strong>
 												<div class="text-muted">
-													Finance
+													
 												</div>
 											</td>
 											<td class="d-none d-xl-table-cell">
-												<strong>Vanessa Tucker</strong>
+												<strong>BAEL</strong>
 												<div class="text-muted">
-													HTML, JS, React
+													1st Year
 												</div>
 											</td>
 											<td>
@@ -431,27 +431,27 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0">
 														<div class="bg-light rounded-2">
-															<img class="p-2" src="img/icons/brand-5.svg">
+															<!-- <img class="p-2" src="img/icons/brand-5.svg"> -->
 														</div>
 													</div>
 													<div class="flex-grow-1 ms-3">
-														<strong>Project Indigo</strong>
+														<strong>Don Marvin</strong>
 														<div class="text-muted">
-															Web, UI/UX Design
+															CAS
 														</div>
 													</div>
 												</div>
 											</td>
 											<td class="d-none d-xxl-table-cell">
-												<strong>Konsili</strong>
+												<strong>E23-09971</strong>
 												<div class="text-muted">
-													Retail
+													
 												</div>
 											</td>
 											<td class="d-none d-xl-table-cell">
-												<strong>Christina Mason</strong>
+												<strong>BAP</strong>
 												<div class="text-muted">
-													HTML, JS, Vue
+												4th Year
 												</div>
 											</td>
 											<td>
