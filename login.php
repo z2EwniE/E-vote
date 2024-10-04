@@ -80,7 +80,7 @@ if ($login->isRememberSet()) {
                 <div class="col-12 col-xl-9">
                 <img class="img-fluid rounded mb-4" loading="lazy" src="./assets/images/logo/E-vote.jpg" width="245" height="80" alt="BootstrapBrain Logo">
                 <hr class="border-primary-subtle mb-4">
-                <h2 class="h1 mb-4">The goal of this study is to develop a new way of Evote machine.</h2>
+                <h2 class="h1 mb-4">Welcome to eVote~.</h2>
                     <p class="lead mb-5">Zero cost for student who are unable to buy an data inside the campus.</p>
                     <div class="text-endx">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-grip-horizontal" viewBox="0 0 16 16">
