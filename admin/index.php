@@ -260,8 +260,8 @@
 										<tr>
 											<th>Student Name</th>
 											<th class="d-none d-xxl-table-cell">ID Number</th>
-											<th class="d-none d-xl-table-cell">Year Level</th>
-											<th>Course</th>
+											<th class="d-none d-xl-table-cell">Course & Year Level</th>
+											<th>Completed Votes</th>
 											<th class="d-none d-xl-table-cell">Action</th>
 										</tr>
 									</thead>
@@ -271,27 +271,27 @@
 												<div class="d-flex">
 													<div class="flex-shrink-0">
 														<div class="bg-light rounded-2">
-															<img class="p-2" src="img/icons/brand-1.svg">
+															<!-- <img class="p-2" src="img/icons/brand-1.svg"> -->
 														</div>
 													</div>
 													<div class="flex-grow-1 ms-3">
-														<strong>Project Apollo</strong>
+														<strong>Calvin Flores</strong>
 														<div class="text-muted">
-															Web, UI/UX Design
+															CAS
 														</div>
 													</div>
 												</div>
 											</td>
 											<td class="d-none d-xxl-table-cell">
-												<strong>Lechters</strong>
+												<strong>E21-00955</strong>
 												<div class="text-muted">
-													Real Estate
+													
 												</div>
 											</td>
 											<td class="d-none d-xl-table-cell">
-												<strong>Vanessa Tucker</strong>
+												<strong>BSIT</strong>
 												<div class="text-muted">
-													HTML, JS, React
+													4th Year
 												</div>
 											</td>
 											<td>
@@ -480,7 +480,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a target="_blank" class="text-muted"><strong>eVote System/strong></a> &copy;
+								<a target="_blank" class="text-muted"><strong>eVote System</strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
