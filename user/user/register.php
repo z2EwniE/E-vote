@@ -109,5 +109,29 @@ $conn->close();
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            function fetchBarcode() {
+                // Fetch the scan URL
+                fetch('http://192.168.0.100:5000/scan')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            $('#student_id').val(data.barcode);
+                        } else {
+                            $('#message').text('Failed to retrieve barcode.').show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        $('#message').text('Failed to start login process.').show();
+                    });
+            }
+    
+            // Automatically fetch barcode every 2 seconds
+            setInterval(fetchBarcode, 2000);
+        });
+    </script>
 </body>
 </html>

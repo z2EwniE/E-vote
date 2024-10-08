@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "Invalid Student ID!";
         }
 
-        $stmt->close();
-        $stmt_votes->close();
-        $conn->close();
+        // $stmt->close();
+        // $stmt_votes->close();
+        // $conn->close();
     }
 }
 ?>
