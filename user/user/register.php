@@ -66,7 +66,7 @@ $conn->close();
         <form method="POST" action="">
             <div class="mb-4">
                 <label for="student_id" class="form-label">Student ID:</label>
-                <input type="text" id="student_id" name="student_id" class="form-control" required>
+                <input type="text" id="student_id" name="student_id" class="form-control" placeholder="Use valid Student ID" required>
             </div>
             <div class="mb-4">
                 <label for="first_name" class="form-label">First Name:</label>
@@ -82,7 +82,7 @@ $conn->close();
             </div>
             <div class="mb-4">
                 <label for="suffix_name" class="form-label">Suffix Name:</label>
-                <input type="text" id="suffix_name" name="suffix_name" class="form-control">
+                <input type="text" id="suffix_name" name="suffix_name" class="form-control" placeholder="N/A if none">
             </div>
             <div class="mb-4">
                 <label for="course" class="form-label">Course:</label>
