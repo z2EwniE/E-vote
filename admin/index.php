@@ -1,3 +1,9 @@
+
+<?php
+// Include the fetch_student.php file in index.php
+include __DIR__ . '/../user/fetch_student.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +39,7 @@
         ?>
 
 		<div class="main">
-
+			
             <?php
                 include_once 'includes/navbar.php';
             ?>
@@ -100,7 +106,9 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">5230</h1>
+												<h1 class="mt-1 mb-3">
+												<?php echo isset($total_count) ? $total_count : 'Data not available'; ?>
+												</h1>
 
 											</div>
 										</div>
@@ -111,7 +119,7 @@
 														<h5 class="card-title">Votes At This Time</h5>
 														
 													</div>
-
+								
 													<div class="col-auto">
 														<div class="stat text-primary">
 															<i class="align-middle" data-feather="clipboard"></i>
