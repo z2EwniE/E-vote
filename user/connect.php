@@ -2,7 +2,7 @@
 
 $servername = "localhost";  
 $username = "root";        
-$password = "EDscMIJndts4lAo8";             
+$password = "";             
 $dbname = "evote";         
 
 

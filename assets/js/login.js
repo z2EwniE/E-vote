@@ -58,7 +58,7 @@ $(function() {
                     } else {
                         notyf.success(res.message)
                         setTimeout(() => {
-                            window.location = 'admin/';
+                            window.location = 'index.php';
                         }, 3000);
                     }
                 } else {
