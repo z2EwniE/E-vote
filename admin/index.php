@@ -1,7 +1,15 @@
 
 <?php
+
+include_once __DIR__ . "/../config/init.php";
+
 // Include the fetch_student.php file in index.php
 include __DIR__ . '/../user/fetch_student.php';
+
+if (!$login->isLoggedIn()) {
+	header('Location: login.php' );
+}
+
 ?>
 
 <!DOCTYPE html>

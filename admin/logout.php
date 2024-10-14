@@ -1,5 +1,5 @@
 <?php
-include_once 'config/init.php';
+include_once __DIR__ . "/../config/init.php";
 
 Session::unsetSession("uid");
 Session::unsetSession("isLoggedIn");

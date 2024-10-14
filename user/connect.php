@@ -1,15 +1,15 @@
-            <?php
-           
-            $servername = "localhost";  
-            $username = "root";        
-            $password = "";             
-            $dbname = "evote";         
+<?php
+
+$servername = "localhost";  
+$username = "root";        
+$password = "EDscMIJndts4lAo8";             
+$dbname = "evote";         
 
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-  
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        ?>
+
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+?>
