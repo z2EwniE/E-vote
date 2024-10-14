@@ -86,7 +86,7 @@ if (!isset($_SESSION['student_id'])) {
                 <div class="container-fluid">
                     <div class="text-muted">
                         <div class="text-center">
-                            <a class="text-muted"><strong>ISPSC Tagudin Campus</strong></a> &copy;
+                            <a class="text-muted"><strong>ISPSC-Tagudin Campus</strong></a> &copy;
                         </div>
                     </div>
                 </div>

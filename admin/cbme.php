@@ -19,7 +19,7 @@
 
 	<style>
 		body {
-			opacity: 0;
+			opacity: 0; 
 		}
 
       th.sortable{

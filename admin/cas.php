@@ -26,7 +26,7 @@
         cursor: pointer;
         white-space: nowrap;
       }
-    /* Make table headers clickable with pointer */
+    
     th.sortable i{
         
         margin-left: 5px;

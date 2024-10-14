@@ -1,9 +1,9 @@
-<?php
-// Database connection
-$host = 'localhost';
-$dbname = 'evote';
-$username = 'root';
-$password = '';
+    <?php
+    // Database connection
+    $host = 'localhost';
+    $dbname = 'evote';
+    $username = 'root';
+    $password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -38,12 +38,12 @@ try {
             'position_name' => $position_name,
             'candidates' => $candidates
         ];
+        }
+
+        // Return result as JSON
+        echo json_encode(['positions' => $result]);
+
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
     }
-
-    // Return result as JSON
-    echo json_encode(['positions' => $result]);
-
-} catch (PDOException $e) {
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
-}
-?>
+    ?>

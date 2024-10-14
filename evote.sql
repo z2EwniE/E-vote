@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2024 at 03:45 PM
+-- Generation Time: Oct 13, 2024 at 05:16 PM
 -- Server version: 11.4.3-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,15 +31,17 @@ CREATE TABLE `candidates` (
   `candidate_id` int(11) NOT NULL,
   `candidate_position` int(11) NOT NULL,
   `candidate_name` varchar(255) NOT NULL,
-  `department` int(11) NOT NULL
+  `partylist_id` int(11) NOT NULL,
+  `department` int(11) NOT NULL,
+  `candidate_image_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `candidates`
 --
 
-INSERT INTO `candidates` (`candidate_id`, `candidate_position`, `candidate_name`, `department`) VALUES
-(1, 0, 'Romel Moster', 1);
+INSERT INTO `candidates` (`candidate_id`, `candidate_position`, `candidate_name`, `partylist_id`, `department`, `candidate_image_path`) VALUES
+(1, 1, 'Romel Moster', 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -59,8 +61,22 @@ CREATE TABLE `course` (
 
 INSERT INTO `course` (`course_id`, `course_department`, `course_name`) VALUES
 (1, 1, 'Bachelor of Science in Information Technology'),
-(2, 1, 'Bachelor of Science in English Language'),
-(3, 1, 'Bachelor of Science in Social Sciences');
+(2, 1, 'Bachelor of Arts in English Language'),
+(3, 1, 'Bachelor of Arts in Social Science'),
+(4, 1, 'Bachelor of Science in Mathematics'),
+(5, 1, 'Bachelor of Arts in Psychology'),
+(6, 1, 'Bachelor of Science in Public Administration'),
+(9, 2, 'Bachelor of Secondary Education Major in English'),
+(10, 2, 'Bachelor of Secondary Education Major in Mathematics'),
+(11, 2, 'Bachelor of Secondary Education Major in Science'),
+(13, 2, 'Bachelor of Secondary Education Major in Filipino'),
+(14, 2, 'Bachelor of Secondary Education Major in Social Studies'),
+(15, 2, 'Bachelor of Elementary Education'),
+(16, 2, 'Bachelor of Physical Education'),
+(17, 3, 'Bachelor of Science in Business Administration Major in Human Resource Management'),
+(18, 3, 'Bachelor of Science in Business Administration Major in Marketing Management'),
+(19, 3, 'Bachelor of Science in Business Administration Major in Financial Management'),
+(20, 3, 'Bachelor of Science in Entrepreneurship');
 
 -- --------------------------------------------------------
 
@@ -415,7 +431,7 @@ ALTER TABLE `candidates`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `department`
