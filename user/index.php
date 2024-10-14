@@ -3,7 +3,7 @@ session_start();
 
 // Redirect to login page if not logged in
 if (!isset($_SESSION['student_id'])) {
-    header('Location: login.html'); 
+    header('Location: login.php'); 
     exit();
 }
 ?>

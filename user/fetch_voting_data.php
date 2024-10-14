@@ -1,4 +1,4 @@
-    <?php
+<?php
     // Database connection
     $host = 'localhost';
     $dbname = 'evote';
@@ -23,10 +23,10 @@ try {
         // Updated Query to get candidates for each position (with correct table name: partylists)
         $candidatesQuery = "SELECT candidates.*, department.department_name, partylists.partylist_name, partylists.partylist_id 
                             FROM candidates
-                            LEFT JOIN department ON candidates.candidate_position = department.department_id
-                            LEFT JOIN partylists ON candidates.candidate_position = partylists.partylist_id
+                            INNER JOIN department ON candidates.department = department.department_id
+                            INNER JOIN partylists ON candidates.partylist_id = partylists.partylist_id
                             WHERE candidates.candidate_position = :position_id";
-        
+
         $candidatesStmt = $pdo->prepare($candidatesQuery);
         $candidatesStmt->bindParam(':position_id', $position_id);
         $candidatesStmt->execute();
