@@ -3,7 +3,7 @@
    $host = 'localhost'; 
     $dbname = 'evote'; 
     $username = 'root';   
-    $password = '';      
+    $password = 'EDscMIJndts4lAo8';      
 
     try {
         // Create a new PDO instance

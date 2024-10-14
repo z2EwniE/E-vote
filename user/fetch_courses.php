@@ -1,9 +1,6 @@
 <?php
-// Database connection
-$host = "127.0.0.1";
-$username = "root"; // Replace with your DB username
-$password = ""; // Replace with your DB password
-$database = "evote"; // Replace with your DB name
+
+include 'connect.php';
 
 $connection = new mysqli($host, $username, $password, $database);
 

@@ -1,6 +1,6 @@
 <?php
 
-include_once "config/init.php";
+include_once __DIR__ . "/../config/init.php";
 
 if (isset($_GET["ref"])) {
     Session::unsetSession("tfaChallenge");
@@ -13,12 +13,8 @@ if (isset($_GET["ref_"])) {
 }
 
 if ($login->isLoggedIn()) {
-    header("Location: admin/index.php");
+    header("Location: index.php");
     die();
-}
-
-if ($login->isTfaLoggedIn()) {
-    header("Location: challenge.php");
 }
 
 if ($login->isRememberSet()) {
@@ -40,7 +36,7 @@ if ($login->isRememberSet()) {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/my-login.css">
+            <link rel="stylesheet" href="../assets/css/my-login.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
             <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-9/assets/css/login-9.css">
@@ -207,8 +203,8 @@ if ($login->isRememberSet()) {
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/sha512.min.js"></script>
-<script src="assets/js/login.js"></script>
+<script src="../assets/js/sha512.min.js"></script>
+<script src="../assets/js/login.js"></script>
 
 </body>
 </html>

@@ -1,9 +1,6 @@
 <?php
-    // Database connection
-    $host = 'localhost';
-    $dbname = 'evote';
-    $username = 'root';
-    $password = '';
+
+   include 'db.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
