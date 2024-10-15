@@ -111,8 +111,6 @@
                    
                     </select>
                 </div>
-        
-                    
            
                 <button type="submit" class="btn btn-primary w-100">Register</button>
             </form>
@@ -149,35 +147,35 @@
                 setInterval(fetchBarcode, 2000);
             });
             </script>
-                    <script>
-                $(document).ready(function(){
-                    // Fetch departments on page load
-                    $.ajax({
-                        url: 'fetch_department.php',
-                        method: 'GET',
-                        success: function(response) {
-                            $('#department').append(response);
-                        }
-                    });
 
-                    // Fetch courses based on selected department
-                    $('#department').change(function(){
-                        var department_id = $(this).val();
-                        if(department_id !== '') {
-                            $.ajax({
-                                url: 'fetch_courses.php',
-                                method: 'POST',
-                                data: {department_id: department_id},
-                                success: function(response) {
-                                    $('#course').html(response);
-                                }
-                            });
-                        } else {
-                            $('#course').html('<option value="">Select Course</option>');
-                        }
+            <script>
+                    $(document).ready(function() {
+                        // Fetch departments on page load
+                        $.ajax({
+                            url: 'fetch_department.php',
+                            method: 'GET',
+                            success: function(response) {
+                                $('#department').append(response);
+                            }
+                        });
+
+                        $('#department').on('change', function() {
+                            var departmentID = $(this).val();
+                            if (departmentID) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'fetch_courses.php', // Assuming your PHP file is named fetch_courses.php
+                                    data: { department_id: departmentID },
+                                    success: function(html) {
+                                        $('#course').html(html);
+                                    }
+                                });
+                            } else {
+                                $('#course').html('<option value="">Select Course</option>');
+                            }
+                        });
                     });
-                });
-            </script>
+                </script>
 
     </body>
 </html>
