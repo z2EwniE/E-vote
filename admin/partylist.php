@@ -126,24 +126,13 @@
 											<tr>
                                                 <th onclick="sortTable(0)" class="sortable">No. 
                                                     <i class="fas fa-sort"></i></th>
-                                                <th onclick="sortTable(1)" class="sortable">Student ID No. 
-                                                    </th>
-                                                <th onclick="sortTable(2)" class="sortable">Name 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">Year Level 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th>Department </th>
                                                 <th>Partylist </th>
-                                                <th>Status</th>
+                                                <th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
                                                 <td>1</td>
-                                                <td>2021001</td>
-                                                <td>bald</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>CAS</td>
                                                 <td>buto    </td>
                                                 <td>
                                                     <div class="btn-group">

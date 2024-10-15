@@ -48,13 +48,13 @@
             </li>   
             
             <li class="sidebar-item">
-                <a class='sidebar-link' href='#'>
+                <a class='sidebar-link' href='candidates.php'>
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Candidates</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class='sidebar-link' href='#'>
+            <a class='sidebar-link' href='partylist.php'>
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Partylist</span>
                 </a>
             
