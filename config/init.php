@@ -36,3 +36,4 @@ $login = new Login();
 
 $auto_logout = new AutoLogout();
 $auto_logout->checkActivity();
+

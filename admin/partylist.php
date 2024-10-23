@@ -1,72 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="qoshima">
-	<meta name="keywords" content=" Admin, dashboard, responsive, css, sass, html, theme, front-end">
-	
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-	<title>E-Vote System</title>
-
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-	<!-- Choose your prefered color scheme -->
-	 <link href="css/light.css" rel="stylesheet">
-
-     <link rel="stylesheet" href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css" >
-
-	<style>
-		body {
-			opacity: 0;
-		}
-
-      th.sortable{
-        cursor: pointer;
-        white-space: nowrap;
-      }
     
-    th.sortable i{
+        <?php
+
+            include_once __DIR__ . "/../config/init.php";
+
+        ?>
+    
+    
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="qoshima">
+        <meta name="keywords" content=" Admin, dashboard, responsive, css, sass, html, theme, front-end">
         
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+        <title>E-Vote System</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+        <!-- Choose your prefered color scheme -->
+        <link href="css/light.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css" >
+
+        <style>
+            body {
+                opacity: 0;
+            }
+
+        th.sortable{
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        th.sortable i{
+            
         margin-left: 5px;
         font-size: 0.85em;
-    }
+        }
 
-    th{
-        vertical-align: middle;
-    }
+        th{
+            vertical-align: middle;
+        }
 
-    /* Add hover effect for better interaction */
-    table thead th:hover {
-        background-color: #f8f9fa;
-    }
+        /* Add hover effect for better interaction */
+        table thead th:hover {
+            background-color: #f8f9fa;
+        }
 
-    /* Add padding for better spacing */
-    table thead th, table tbody td {
-        padding: 12px;
-        vertical-align: middle;
-    }
+        /* Add padding for better spacing */
+        table thead th, table tbody td {
+            padding: 12px;
+            vertical-align: middle;
+        }
 
-    /* Highlight the active column for better clarity */
-    .table-striped tbody tr:hover {
-        background-color: #f1f1f1;
-    }
+        /* Highlight the active column for better clarity */
+        .table-striped tbody tr:hover {
+            background-color: #f1f1f1;
+        }
 
-    /* Align the sort icon next to the text */
-    th.sortable i {
-        margin-left: 5px;
-    }
+        /* Align the sort icon next to the text */
+        th.sortable i {
+            margin-left: 5px;
+        }
 
-    /* Custom styling for sort icons */
-    th.sortable i.fa-sort-up,
-    th.sortable i.fa-sort-down {
-        color: #000;
-    }
+        /* Custom styling for sort icons */
+        th.sortable i.fa-sort-up,
+        th.sortable i.fa-sort-down {
+            color: #000;
+        }
 
-	</style>
+        </style>
 </head>
 
 
@@ -89,8 +97,8 @@
                 
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Candidates</h1><a class="badge bg-primary ms-2" 
-							target="_blank">Red Dragons<i class="fas fa-fw fa-external-link-alt"></i></a>
+						<h1 class="h3 d-inline align-middle">Partylist</h1><a class="badge bg-primary ms-2" 
+							target="_blank">SSC<i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
 					<div class="row">
@@ -110,7 +118,7 @@
 											</div>
 										</div>
 									</div>
-									<h5 class="card-title mb-0">Registered Students</h5>
+									<h5 class="card-title mb-0">Registered Partylist</h5>
 								</div>  
 								<div class="card-body">
                                 <div class="row mb-3">
@@ -131,17 +139,34 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-                                                <td>1</td>
-                                                <td>buto    </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-danger"><i class="fa fa-trash"> </i></button>
-                                                    </div>
-                                                </td>
-										</tr>
 
+                                        <?php
+                                try {
+                                    // Assuming $db is a valid PDO instance from init.php
+                                    $stmt = $db->prepare("SELECT partylist_id AS No, partylist_name AS Partylist FROM partylists");
+                                    $stmt->execute();
+                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                    if (count($results) > 0) {
+                                        foreach ($results as $row) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row['No'] . "</td>";
+                                            echo "<td>" . $row['Partylist'] . "</td>";
+                                            echo "<td>
+                                                    <div class='btn-group'>
+                                                        <button class='btn btn-primary'><i class='fa fa-edit'></i></button>
+                                                        <button class='btn btn-danger'><i class='fa fa-trash'></i></button>
+                                                    </div>
+                                                </td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='3'>No results found</td></tr>";
+                                    }
+                                } catch (PDOException $e) {
+                                    echo "Connection or query failed: " . $e->getMessage();
+                                }
+                                ?>
 
 										</tbody>
 									</table>
