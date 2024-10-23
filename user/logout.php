@@ -18,5 +18,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect to the login page or homepage
-header("Location: login.html"); // Change 'login.php' to your login page or homepage
+header("Location: login.php"); // Change 'login.php' to your login page or homepage
 exit();

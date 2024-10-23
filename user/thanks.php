@@ -70,7 +70,7 @@
         </div>
         <h1 class="thank-you-title">Thank You for Voting!</h1>
         <p class="thank-you-message">Your vote has been successfully submitted. We appreciate your participation.</p>
-        <a href="thanks.php" class="btn btn-primary">Logout</a>
+        <a href="login.php" class="btn btn-primary">Logout</a>
         <div class="footer">
             <p>© 2024 E-vote. All rights reserved.</p>
         </div>

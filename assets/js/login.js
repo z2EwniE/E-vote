@@ -97,7 +97,7 @@ $(function() {
                 var res = JSON.parse(response);
                 if (res.success) {
                     notyf.success(res.message);
-                    setTimeout('window.location = "admin/index.html";', 3000);
+                    setTimeout('window.location = "admin/index.html`";', 3000);
                 } else {
                     notyf.error(res.message);
                     $('#challenge_btn').html('&nbsp; Submit Code');
