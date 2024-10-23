@@ -38,6 +38,7 @@
                 </a>
                 <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
                     <li class="sidebar-item" ><a class='sidebar-link' href='index.php'>Analytics</a></li>
+                  
 
                 </ul>
             </li>

@@ -3,6 +3,7 @@
 
             include_once __DIR__ . "/../config/init.php";
 
+         
         ?>
     
     
@@ -123,12 +124,13 @@
 								<div class="card-body">
                                 <div class="row mb-3">
                                   <div class="col-md-6">
-                             <input type="text" id="searchStudent" class="form-control" 
-                                    placeholder="Search by Student ID Number ONLY" onkeyup="restrictInput(event); searchTable()"
-                                    maxlength="9">
-                              </div>
-                             </div>
+
+                                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPartylistModal">Add Partylist</button>
+                            </div>
+                                </div>
+                        
                              <div class="container mt-5">
+                                
 									<table class="table table-responsive table-striped" id="studentTable" style="width:100%">
 										<thead class="thead-dark">
 											<tr>
@@ -143,7 +145,10 @@
                                         <?php
                                 try {
                                     // Assuming $db is a valid PDO instance from init.php
-                                    $stmt = $db->prepare("SELECT partylist_id AS No, partylist_name AS Partylist FROM partylists");
+                                    $stmt = $db->prepare("SELECT partylist_id AS No, 
+                                                                        partylist_name AS Partylist, 
+                                                                        department FROM partylists");
+
                                     $stmt->execute();
                                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -154,8 +159,8 @@
                                             echo "<td>" . $row['Partylist'] . "</td>";
                                             echo "<td>
                                                     <div class='btn-group'>
-                                                        <button class='btn btn-primary'><i class='fa fa-edit'></i></button>
-                                                        <button class='btn btn-danger'><i class='fa fa-trash'></i></button>
+                                                        <button class='btn btn-primary' onclick='editPartylist(" . json_encode($row) . ")' data-bs-toggle='modal' data-bs-target='#editPartylistModal'><i class='fa fa-edit'></i></button>
+                                                        <button class='btn btn-danger' onclick='deletePartylist(" . $row['No'] . ")'><i class='fa fa-trash'></i></button>
                                                     </div>
                                                 </td>";
                                             echo "</tr>";
@@ -175,7 +180,64 @@
 						</div>
                     </div>
 
-					
+
+                                <!-- Add Partylist Modal -->
+                <div class="modal fade" id="addPartylistModal" tabindex="-1" aria-labelledby="addPartylistModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addPartylistModalLabel">Add Partylist</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addPartylistForm">
+                                    <div class="mb-3">
+                                        <label for="partylistName" class="form-label">Partylist Name</label>
+                                        <input type="text" class="form-control" id="partylistName" maxlength="100" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="department" class="form-label">Department</label>
+                                        <input type="number" class="form-control" id="department" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="addPartylist()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Partylist Modal -->
+                <div class="modal fade" id="editPartylistModal" tabindex="-1" aria-labelledby="editPartylistModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editPartylistModalLabel">Edit Partylist</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editPartylistForm">
+                                    <div class="mb-3">
+                                        <label for="editPartylistName" class="form-label">Partylist Name</label>
+                                        <input type="text" class="form-control" id="editPartylistName" maxlength="100" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editDepartment" class="form-label">Department</label>
+                                        <input type="number" class="form-control" id="editDepartment" required>
+                                    </div>
+                                    <input type="hidden" id="editPartylistId">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="savePartylistChanges()">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 										
 
 
@@ -218,6 +280,94 @@
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <!-- Custom Script for Search and Sort -->
+
+            <script>
+                document.getElementById("addPartylistForm").addEventListener("submit", function(event) {
+                    event.preventDefault(); // Prevent the form from submitting normally
+                });
+
+                function addPartylist() {
+                    const partylistName = document.getElementById('partylistName').value.trim();
+                    const department = document.getElementById('department').value.trim();
+                    if (partylistName === "" || department === "") {
+                        alert("Please enter all required fields.");
+                        return;
+                    }
+
+                    // Send AJAX request to add the partylist to the database
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "../../pList/add_pList.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            if (xhr.responseText.trim() === "success") {
+                                location.reload();
+                            } else {
+                                alert("Failed to add partylist: " + xhr.responseText);
+                            }
+                        }
+                    };
+                    xhr.send("partylist_name=" + encodeURIComponent(partylistName) + "&department=" + encodeURIComponent(department));
+                }
+
+                function editPartylist(row) {
+                    const partylist = JSON.parse(row);
+                    document.getElementById('editPartylistId').value = partylist.No;
+                    document.getElementById('editPartylistName').value = partylist.Partylist;
+                    document.getElementById('editDepartment').value = partylist.department;
+                }
+
+                function savePartylistChanges() {
+                    const partylistId = document.getElementById('editPartylistId').value;
+                    const partylistName = document.getElementById('editPartylistName').value.trim();
+                    const department = document.getElementById('editDepartment').value.trim();
+
+                    if (partylistName === "" || department === "") {
+                        alert("Please enter all required fields.");
+                        return;
+                    }
+
+                    // Send AJAX request to update the partylist in the database
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "../../pList/e_pList.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            if (xhr.responseText.trim() === "success") {
+                                location.reload();
+                            } else {
+                                alert("Failed to update partylist: " + xhr.responseText);
+                            }
+                        }
+                    };
+                    xhr.send("partylist_id=" + encodeURIComponent(partylistId) + "&partylist_name=" + encodeURIComponent(partylistName) + "&department=" + encodeURIComponent(department));
+                }
+
+                function deletePartylist(partylistId) {
+                    if (!confirm("Are you sure you want to delete this partylist?")) {
+                        return;
+                    }
+
+                    // Send AJAX request to delete the partylist from the database
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "../../pList/dminus_pList.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            if (xhr.responseText.trim() === "success") {
+                                location.reload();
+                            } else {
+                                alert("Failed to delete partylist: " + xhr.responseText);
+                            }
+                        }
+                    };
+                    xhr.send("partylist_id=" + encodeURIComponent(partylistId));
+                }
+            </script>
+
+
+
+ <!--
         <script>
         
     function restrictInput(event) {
@@ -304,7 +454,7 @@
         }
 
     </script>
-
+                            -->
     </body>
 
     </html> 
