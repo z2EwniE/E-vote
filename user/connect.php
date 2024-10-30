@@ -1,8 +1,8 @@
         <?php
 
-        $servername = "localhost";  
-        $username = "root";        
-        $password = "";             
+        $servername = "139.99.97.250";  
+        $username = "evote";        
+        $password = "TacHIuuWOuhPS!Oh";             
         $dbname = "evote";         
 
 

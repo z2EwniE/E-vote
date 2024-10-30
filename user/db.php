@@ -1,9 +1,9 @@
     <?php
    
-   $host = 'localhost'; 
+   $host = '139.99.97.250'; 
     $dbname = 'evote'; 
-    $username = 'root';   
-    $password = '';      
+    $username = 'evote';   
+    $password = 'TacHIuuWOuhPS!Oh';      
 
     try {
         // Create a new PDO instance
