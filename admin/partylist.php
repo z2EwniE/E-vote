@@ -1,12 +1,11 @@
-    
-        <?php
+    <?php
 
             include_once __DIR__ . "/../config/init.php";
 
          
         ?>
-    
-    
+
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -16,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="qoshima">
         <meta name="keywords" content=" Admin, dashboard, responsive, css, sass, html, theme, front-end">
-        
+
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
         <title>E-Vote System</title>
@@ -26,25 +25,25 @@
         <!-- Choose your prefered color scheme -->
         <link href="css/light.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css" >
+        <link rel="stylesheet" href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css">
 
         <style>
-            body {
-                opacity: 0;
-            }
+        body {
+            opacity: 0;
+        }
 
-        th.sortable{
+        th.sortable {
             cursor: pointer;
             white-space: nowrap;
         }
-        
-        th.sortable i{
-            
-        margin-left: 5px;
-        font-size: 0.85em;
+
+        th.sortable i {
+
+            margin-left: 5px;
+            font-size: 0.85em;
         }
 
-        th{
+        th {
             vertical-align: middle;
         }
 
@@ -54,7 +53,8 @@
         }
 
         /* Add padding for better spacing */
-        table thead th, table tbody td {
+        table thead th,
+        table tbody td {
             padding: 12px;
             vertical-align: middle;
         }
@@ -74,75 +74,77 @@
         th.sortable i.fa-sort-down {
             color: #000;
         }
-
         </style>
-</head>
+    </head>
 
 
-<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
-	<div class="wrapper">
+    <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+        <div class="wrapper">
 
-        <?php
+            <?php
             include_once 'includes/sidebar.php';
         ?>
 
-		<div class="main">
+            <div class="main">
 
-            <?php
+                <?php
                 include_once 'includes/navbar.php';
             ?>
-			<!-- start here -->
-            <main class="content">
-				<div class="container-fluid p-0">
+                <!-- start here -->
+                <main class="content">
+                    <div class="container-fluid p-0">
 
-                
 
-					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Partylist</h1><a class="badge bg-primary ms-2" 
-							target="_blank">SSC<i class="fas fa-fw fa-external-link-alt"></i></a>
-					</div>
 
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card">
-								<div class="card-header pb-0">
-									<div class="card-actions float-end">
-										<div class="dropdown position-relative">
-											<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-												<i class="align-middle" data-feather="more-horizontal"></i>
-											</a>
+                        <div class="mb-3">
+                            <h1 class="h3 d-inline align-middle">Partylist</h1><a class="badge bg-primary ms-2"
+                                target="_blank">SSC<i class="fas fa-fw fa-external-link-alt"></i></a>
+                        </div>
 
-											<div class="dropdown-menu dropdown-menu-end">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Registered Partylist</h5>
-								</div>  
-								<div class="card-body">
-                                <div class="row mb-3">
-                                  <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-header pb-0">
+                                        <div class="card-actions float-end">
+                                            <div class="dropdown position-relative">
+                                                <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+                                                    <i class="align-middle" data-feather="more-horizontal"></i>
+                                                </a>
 
-                                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPartylistModal">Add Partylist</button>
-                            </div>
-                                </div>
-                        
-                             <div class="container mt-5">
-                                
-									<table class="table table-responsive table-striped" id="studentTable" style="width:100%">
-										<thead class="thead-dark">
-											<tr>
-                                                <th onclick="sortTable(0)" class="sortable">No. 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th>Partylist </th>
-                                                <th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h5 class="card-title mb-0">Registered Partylist</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
 
-                                        <?php
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#addPartylistModal">Add Partylist</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="container mt-5">
+
+                                            <table class="table table-responsive table-striped" id="studentTable"
+                                                style="width:100%">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th onclick="sortTable(0)" class="sortable">No.
+                                                            <i class="fas fa-sort"></i>
+                                                        </th>
+                                                        <th>Partylist </th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <?php
                                 try {
                                     // Assuming $db is a valid PDO instance from init.php
                                     $stmt = $db->prepare("SELECT partylist_id AS No, 
@@ -159,7 +161,7 @@
                                             echo "<td>" . $row['Partylist'] . "</td>";
                                             echo "<td>
                                                     <div class='btn-group'>
-                                                        <button class='btn btn-primary' onclick='editPartylist(" . json_encode($row) . ")' data-bs-toggle='modal' data-bs-target='#editPartylistModal'><i class='fa fa-edit'></i></button>
+                                                        <button class='btn btn-primary delete_partylist' data-id='". $row['No'] ."' data-bs-toggle='modal' data-bs-target='#editPartylistModal'><i class='fa fa-edit '></i></button>
                                                         <button class='btn btn-danger' onclick='deletePartylist(" . $row['No'] . ")'><i class='fa fa-trash'></i></button>
                                                     </div>
                                                 </td>";
@@ -173,311 +175,254 @@
                                 }
                                 ?>
 
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-                    </div>
-
-
-                                <!-- Add Partylist Modal -->
-                <div class="modal fade" id="addPartylistModal" tabindex="-1" aria-labelledby="addPartylistModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addPartylistModalLabel">Add Partylist</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="addPartylistForm">
-                                    <div class="mb-3">
-                                        <label for="partylistName" class="form-label">Partylist Name</label>
-                                        <input type="text" class="form-control" id="partylistName" maxlength="100" required>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <div class="mb-3">
-                                        <label for="department" class="form-label">Department:</label>
-                                        <select id="department" name="department" class="form-select" required>
-                                            <option value="">Select Department</option>
+
+                            <!-- Add Partylist Modal -->
+                            <div class="modal fade" id="addPartylistModal" tabindex="-1"
+                                aria-labelledby="addPartylistModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addPartylistModalLabel">Add Partylist</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="addPartylistForm">
+                                                <div class="mb-3">
+                                                    <label for="partylistName" class="form-label">Partylist Name</label>
+                                                    <input type="text" class="form-control" id="partylistName"
+                                                        maxlength="100" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="department" class="form-label">Department:</label>
+                                                    <select id="department" name="department" class="form-select"
+                                                        required>
+                                                        <option value="">Select Department</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="addPartylist()">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Edit Partylist Modal -->
+                            <div class="modal fade" id="editPartylistModal" tabindex="-1"
+                                aria-labelledby="editPartylistModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editPartylistModalLabel">Edit Partylist</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="editPartylistForm">
+                                                <div class="mb-3">
+                                                    <label for="editPartylistName" class="form-label">Partylist
+                                                        Name</label>
+                                                    <input type="text" class="form-control" id="editPartylistName"
+                                                        maxlength="100" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="editDepartment" class="form-label">Department:</label>
+                                                    <select id="editDepartment" name="editDepartment"
+                                                        class="form-select" required>
+                                                        <option value="">Select Department</option>
+                                                        <!-- Add department options here -->
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" id="editPartylistId">
+                                                <button id="editPartylistBtn" type="submit" class="btn btn-primary">Update</button>
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                             
-                                        </select>
-                                    </div>    
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="addPartylist()">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Edit Partylist Modal -->
-                <div class="modal fade" id="editPartylistModal" tabindex="-1" aria-labelledby="editPartylistModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editPartylistModalLabel">Edit Partylist</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="editPartylistForm">
-                                    <div class="mb-3">
-                                        <label for="editPartylistName" class="form-label">Partylist Name</label>
-                                        <input type="text" class="form-control" id="editPartylistName" maxlength="100" required>
+                                        </div>
                                     </div>
-                                        <div class="mb-3">
-                                            <label for="editDepartment" class="form-label">Department:</label>
-                                            <select id="editDepartment" name="editDepartment" class="form-select" required>
-                                                <option value="">Select Department</option>
-                                                
-                                            </select>
-                                        </div>    
-                                    <input type="hidden" id="editPartylistId">
-                                </form>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="savePartylistChanges()">Save changes</button>
+
+
+
+
+
+                            <!--end of pages -->
+
+                        </div>
+                </main>
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row text-muted">
+                            <div class="col-6 text-start">
+                                <p class="mb-0">
+                                    <a href="https://github.com/z2EwniE" target="_blank"
+                                        class="text-muted"><strong>Calvskie</strong></a> &copy;
+                                </p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a class="text-muted" href="#">Support</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="text-muted" href="#">Help Center</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="text-muted" href="#">Privacy</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="text-muted" href="#">Terms</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
+                </footer>
+            </div>
+        </div>
+        <script src="js/app.js"></script>
 
-										
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
-
-
-                    <!--end of pages -->
-
-				</div>
-			</main>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a href="https://github.com/z2EwniE" target="_blank" class="text-muted"><strong>Calvskie</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-	<script src="js/app.js"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-<!-- Custom Script for Search and Sort -->
-
-            <script>
-                document.getElementById("addPartylistForm").addEventListener("submit", function(event) {
-                    event.preventDefault(); // Prevent the form from submitting normally
-                });
-
-                function addPartylist() {
-                    const partylistName = document.getElementById('partylistName').value.trim();
-                    const department = document.getElementById('department').value.trim();
-                    if (partylistName === "" || department === "") {
-                        alert("Please enter all required fields.");
-                        return;
-                    }
-
-                    // Send AJAX request to add the partylist to the database
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "pList/add_pList.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            if (xhr.responseText.trim() === "success") {
-                                location.reload();
-                            } else {
-                                alert("Failed to add partylist: " + xhr.responseText);
-                            }
-                        }
-                    };
-                    xhr.send("partylist_name=" + encodeURIComponent(partylistName) + "&department=" + encodeURIComponent(department));
-                }
-
-                function editPartylist(row) {
-                    const partylist = JSON.parse(row);
-                    document.getElementById('editPartylistId').value = partylist.No;
-                    document.getElementById('editPartylistName').value = partylist.Partylist;
-                    document.getElementById('editDepartment').value = partylist.department;
-                }
-
-                function savePartylistChanges() {
-                    const partylistId = document.getElementById('editPartylistId').value;
-                    const partylistName = document.getElementById('editPartylistName').value.trim();
-                    const department = document.getElementById('editDepartment').value.trim();
-
-                    if (partylistName === "" || department === "") {
-                        alert("Please enter all required fields.");
-                        return;
-                    }
-
-                    // Send AJAX request to update the partylist in the database
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "pList/e_pList.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            if (xhr.responseText.trim() === "success") {
-                                location.reload();
-                            } else {
-                                alert("Failed to update partylist: " + xhr.responseText);
-                            }
-                        }
-                    };
-                    xhr.send("partylist_id=" + encodeURIComponent(partylistId) + "&partylist_name=" + encodeURIComponent(partylistName) + "&department=" + encodeURIComponent(department));
-                }
-
-                function deletePartylist(partylistId) {
-                    if (!confirm("Are you sure you want to delete this partylist?")) {
-                        return;
-                    }
-
-                    // Send AJAX request to delete the partylist from the database
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "pList/dminus_pList.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            if (xhr.responseText.trim() === "success") {
-                                location.reload();
-                            } else {
-                                alert("Failed to delete partylist: " + xhr.responseText);
-                            }
-                        }
-                    };
-                    xhr.send("partylist_id=" + encodeURIComponent(partylistId));
-                }
-
-
-                $(document).ready(function() {
-                        // Fetch departments on page load
-                        $.ajax({
-                            url: '../user/fetch_department.php',
-                            method: 'GET',
-                            success: function(response) {
-                                $('#department').append(response);
-                                $('#editDepartment').append(response);
-                            }
-                        });
-                    });
-
-          
-            </script>
-
-
-
- <!--
         <script>
-        
-    function restrictInput(event) {
-        let input = event.target.value;
 
-        
-        let formattedInput = input.replace(/[^0-9E-]/g, '');
-        let eCount = (formattedInput.match(/[E]/g) || []).length;
-        if (eCount > 1) {
-            formattedInput = formattedInput.slice(0, formattedInput.lastIndexOf('E') + 1);
-        }
+        $(document).on('click', '.delete_partylist', function() {
+            let id = $(this).data('id');
+            
+            $.ajax({
+                type: 'POST',
+                url: 'pList/fetch_pList.php',
+                data: {
+                    partylist_id: id
+                },
+                success: function(data) {
+                    var res = JSON.parse(data)
+                    $("#editPartylistId").val(res.partylist_id)
+                    $("#editPartylistName").val(res.partylist_name)
+                    $("#editDepartment").val(res.department)
 
-        if (formattedInput.length > 9) {
-            formattedInput = formattedInput.slice(0, 9);  // Limit to 9 characters
-        }
-
-        event.target.value = formattedInput;  // Update the input field
-    }
-
-    function searchTable() {
-        let input = document.getElementById("searchStudent").value;
-
-        let table = document.getElementById("studentTable");
-        let tr = table.getElementsByTagName("tr");
-
-        for (let i = 1; i < tr.length; i++) {
-            let td = tr[i].getElementsByTagName("td")[1];  // Assuming you're searching in the second column
-
-            if (td) {
-                let txtValue = td.textContent || td.innerText;
-
-                // Display row only if input matches, no need to wait for exactly 8 characters
-                tr[i].style.display = (txtValue.indexOf(input) > -1) ? "" : "none";
-            }
-        }
-    }
-
-
-         let currentSortOrder = {}; // Track sorting direction for each column
-
-    function sortTable(columnIndex) {
-    let table = document.getElementById("studentTable");
-    let rows = Array.from(table.rows).slice(1); // Skip the header row
-
-    // Determine if the column is currently sorted in ascending order
-    let isAscending = currentSortOrder[columnIndex] === 'asc';
-
-    // Sort the rows based on the column index
-    let sortedRows = rows.sort((a, b) => {
-        let aText = a.cells[columnIndex].innerText.toLowerCase();
-        let bText = b.cells[columnIndex].innerText.toLowerCase();
-
-        if (columnIndex === 0 || columnIndex === 1) {
-            // Sort the "No." or "Student ID No." column as numbers
-            let aValue = parseInt(aText);
-            let bValue = parseInt(bText);
-            return isAscending ? aValue - bValue : bValue - aValue;
-        } else {
-            // For text-based columns (like Name), sort alphabetically
-            return isAscending ? aText.localeCompare(bText) : bText.localeCompare(aText);
-        }
+                }
+            })
         });
 
-    // Toggle the sort order for next click
-    currentSortOrder[columnIndex] = isAscending ? 'desc' : 'asc';
+        $(document).ready(function () {  
+    $("#editPartylistBtn").on('click', function(e) {
+        e.preventDefault();
 
-    // Rebuild the table with sorted rows
-    let tbody = table.querySelector('tbody');
-    sortedRows.forEach(row => tbody.appendChild(row));
-
-    // Update sorting icons
-    updateSortIcons(columnIndex, isAscending);
-    }
-
-// Function to update the sort icons based on the sorting direction
-        function updateSortIcons(columnIndex, isAscending) {
-    let thElements = document.querySelectorAll('.sortable i');
-    thElements.forEach((icon, idx) => {
-        icon.className = 'fas fa-sort'; // Reset all icons to neutral sort icon
-        if (idx === columnIndex) {
-            icon.className = isAscending ? 'fas fa-sort-up' : 'fas fa-sort-down'; // Update the clicked column icon
-         }
+        $.ajax({
+            url: 'pList/e_pList.php',
+            type: 'POST',
+            dataType: 'text', // Ensure response is treated as plain text
+            data: {
+                partylist_id: $("#editPartylistId").val(),
+                partylist_name: $("#editPartylistName").val(),
+                department: $("#editDepartment").val()
+            },
+            success: function(data) {
+                if (data === "success") {
+                    alert('Okay na'); // Success message
+                } else {
+                    alert('Error: ' + data); // Shows any error message returned by the server
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error); // Alerts if AJAX call fails
+            }
+        });
     });
+});
+
+
+    
+
+
+        document.getElementById("addPartylistForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+
+        function addPartylist() {
+            const partylistName = document.getElementById('partylistName').value.trim();
+            const department = document.getElementById('department').value.trim();
+            if (partylistName === "" || department === "") {
+                alert("Please enter all required fields.");
+                return;
+            }
+
+            // Send AJAX request to add the partylist to the database
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "pList/add_pList.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    if (xhr.responseText.trim() === "success") {
+                        location.reload();
+                    } else {
+                        alert("Failed to add partylist: " + xhr.responseText);
+                    }
+                }
+            };
+            xhr.send("partylist_name=" + encodeURIComponent(partylistName) + "&department=" + encodeURIComponent(
+                department));
         }
 
-    </script>
-                            -->
+
+
+        function deletePartylist(partylistId) {
+            if (!confirm("Are you sure you want to delete this partylist?")) {
+                return;
+            }
+
+            // Send AJAX request to delete the partylist from the database
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "pList/dminus_pList.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    if (xhr.responseText.trim() === "success") {
+                        location.reload();
+                    } else {
+                        alert("Failed to delete partylist: " + xhr.responseText);
+                    }
+                }
+            };
+            xhr.send("partylist_id=" + encodeURIComponent(partylistId));
+        }
+
+
+        $(document).ready(function() {
+            // Fetch departments on page load
+            $.ajax({
+                url: '../user/fetch_department.php',
+                method: 'GET',
+                success: function(response) {
+                    $('#department').append(response);
+                    $('#editDepartment').append(response);
+                }
+            });
+        });
+        </script>
+
     </body>
 
-    </html> 
+    </html>
