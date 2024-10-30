@@ -110,7 +110,7 @@
 											</div>
 										</div>
 									</div>
-									<h5 class="card-title mb-0">Registered Students</h5>
+									<h5 class="card-title mb-0">Registered Candidates</h5>
 								</div>  
 								<div class="card-body">
                                 <div class="row mb-3">

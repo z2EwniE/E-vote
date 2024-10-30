@@ -195,10 +195,15 @@
                                         <label for="partylistName" class="form-label">Partylist Name</label>
                                         <input type="text" class="form-control" id="partylistName" maxlength="100" required>
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="department" class="form-label">Department</label>
-                                        <input type="number" class="form-control" id="department" required>
-                                    </div>
+                                        <label for="department" class="form-label">Department:</label>
+                                        <select id="department" name="department" class="form-select" required>
+                                            <option value="">Select Department</option>
+                                            
+                                        </select>
+                                    </div>    
+
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -223,10 +228,13 @@
                                         <label for="editPartylistName" class="form-label">Partylist Name</label>
                                         <input type="text" class="form-control" id="editPartylistName" maxlength="100" required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="editDepartment" class="form-label">Department</label>
-                                        <input type="number" class="form-control" id="editDepartment" required>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label for="editDepartment" class="form-label">Department:</label>
+                                            <select id="editDepartment" name="editDepartment" class="form-select" required>
+                                                <option value="">Select Department</option>
+                                                
+                                            </select>
+                                        </div>    
                                     <input type="hidden" id="editPartylistId">
                                 </form>
                             </div>
@@ -296,7 +304,7 @@
 
                     // Send AJAX request to add the partylist to the database
                     const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "../../pList/add_pList.php", true);
+                    xhr.open("POST", "pList/add_pList.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -329,7 +337,7 @@
 
                     // Send AJAX request to update the partylist in the database
                     const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "../../pList/e_pList.php", true);
+                    xhr.open("POST", "pList/e_pList.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -350,7 +358,7 @@
 
                     // Send AJAX request to delete the partylist from the database
                     const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "../../pList/dminus_pList.php", true);
+                    xhr.open("POST", "pList/dminus_pList.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -363,6 +371,21 @@
                     };
                     xhr.send("partylist_id=" + encodeURIComponent(partylistId));
                 }
+
+
+                $(document).ready(function() {
+                        // Fetch departments on page load
+                        $.ajax({
+                            url: '../user/fetch_department.php',
+                            method: 'GET',
+                            success: function(response) {
+                                $('#department').append(response);
+                                $('#editDepartment').append(response);
+                            }
+                        });
+                    });
+
+          
             </script>
 
 
