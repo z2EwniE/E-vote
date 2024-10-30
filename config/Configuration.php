@@ -1,7 +1,7 @@
 <?php
-const DB_HOST = "localhost";
-const DB_USER = "root";
-const DB_PASS = "";
+const DB_HOST = "139.99.97.250";
+const DB_USER = "evote";
+const DB_PASS = "TacHIuuWOuhPS!Oh";
 const DB_NAME = "evote";
 
 const APP_NAME = "E-Vote System";
