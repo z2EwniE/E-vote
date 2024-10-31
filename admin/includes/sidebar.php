@@ -70,27 +70,28 @@
     <a data-bs-target="#total_votes" data-bs-toggle="collapse" class="sidebar-link">
         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Total Votes</span>
     </a>
+
     <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href=".php">
+            <a class="sidebar-link" href="1st_yr.php">
                 <i class="align-middle" data-feather="book"></i> 
                 1st Year
             </a></li></ul>
             <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href=".php">
+            <a class="sidebar-link" href="2nd_yr.php">
                 <i class="align-middle" data-feather="book-open"></i> 
                2nd Year
             </a></li></ul>
             <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href=".php">
+            <a class="sidebar-link" href="3rd_yr.php">
                 <i class="align-middle" data-feather="layers"></i> 
                 3rd Year
             </a></li></ul>
             <ul id="total_votes" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
         <li class="sidebar-item">
-            <a class="sidebar-link" href=".php">
+            <a class="sidebar-link" href="4th_yr.php">
                 <i class="align-middle" data-feather="award"></i> 
                4th Year
             </a></li>
@@ -118,6 +119,7 @@
                 CAS
             </a>
         </li>
+        
         <li class="sidebar-item">
             <a class="sidebar-link" href="cbme.php">
                 <i class="align-middle" data-feather="briefcase"></i> 
