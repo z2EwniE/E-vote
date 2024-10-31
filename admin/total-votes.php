@@ -85,21 +85,26 @@
                     <div class="card">
                         <div class="card-header">
                         <div class="d-flex float-end w-25 m-2">
-                                <select name="year" id="year" class="form-control">
+                                <select name="courses" id="courses" class="form-control">
                                     <option value="1">CAS</option>
                                     <option value="2">CTE</option>
                                     <option value="3">CBME</option>
                                 </select>
                             </div>
+   
                             <div class="d-flex float-end w-25 m-2">
-                                <select name="year" id="year" class="form-control">
-                                    <option value="1">First Year</option>
-                                    <option value="2">Second Year</option>
-                                    <option value="3">Third Year</option>
-                                    <option value="4">Fourth Year</option>
+                                <select name="year_level" id="year_level" class="form-control">
+                                    <option value="">Select a year level</option>
                                 </select>
                             </div>
+                                <div class="d-flex float-end w-25 m-2">
+                                <select id="department" name="department" class="form-select" required>
+                        <option value="">Select Department</option>
+                        
+                    </select>
+                            </div>
                         </div>
+
                         <div class="card-body">                
                                 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; gap: 20px;"></div>
                             </div>
@@ -164,7 +169,7 @@
                     // Create the plot
                     const ctx = document.getElementById('votesChartTotal').getContext('2d');
                     new Chart(ctx, {
-                        type: 'bar',
+                        type: 'doughnut',
                         data: {
                             labels: candidates,
                             datasets: [{
@@ -216,7 +221,67 @@
                 // Initialize the program-specific charts
                 initializeCharts();
             });
+
+          
+
         </script>
+
+          <script>
+              $(document).ready(function() {
+                // Fetch departments on page load
+                $.ajax({
+                    url: 'fetch_department.php',
+                    method: 'GET',
+                    dataType: 'html',
+                    success: function(response) {
+                        $('#department').append(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching departments:', xhr.responseText);
+                    }
+                });
+
+                // Fetch courses when a department is selected
+                $('#department').on('change', function() {
+                    var departmentID = $(this).val();
+                    if (departmentID) {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'fetch_courses.php', 
+                            data: { department_id: departmentID },
+                            dataType: 'html',
+                            success: function(response) {
+                                $('#course').html(response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error fetching courses:', xhr.responseText);
+                            }
+                        });
+                    } else {
+                        $('#course').html('<option value="">Select Course</option>');
+                    }
+                });
+
+                // Fetch year levels on page load
+                fetch('fetch_year_levels.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const yearLevels = data.year_levels;
+                        const selectElement = document.getElementById('year_level');
+
+                        // Populate the select dropdown with the year levels
+                        yearLevels.forEach(level => {
+                            const option = document.createElement('option');
+                            option.value = level; // Ensure 'year_level' matches your database schema
+                            option.textContent = level;
+                            selectElement.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching year levels:', error));
+            });
+
+        </script>
+
 
 </body>
 

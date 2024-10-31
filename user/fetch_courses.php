@@ -6,7 +6,7 @@
         if ($conn->connect_error) {
             die("conn failed: " . $conn->connect_error);
         }
-
+        
         if (isset($_POST['department_id'])) {
             $department_id = $_POST['department_id'];
             

@@ -2,7 +2,6 @@
     include 'connect.php';
 
 
- 
 
     if ($conn->connect_error) {
         die("conn failed: " . $conn->connect_error);
