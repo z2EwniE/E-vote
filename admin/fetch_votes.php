@@ -9,7 +9,7 @@
                 FROM votes 
                 GROUP BY candidate_id";
 
-        $stmt = $pdo->query($query);
+        $stmt = $db->query($query);
         $votesData = [];
         
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -23,4 +23,3 @@
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
     }
-    ?>
