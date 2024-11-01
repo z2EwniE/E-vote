@@ -148,9 +148,75 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
         <script>
+            $(document).ready(function() {
+            // Fetch departments on page load
+            $.ajax({
+                url: 'teen_titans/fetch_department.php',
+                method: 'GET',
+                dataType: 'html',
+                success: function(response) {
+                    $('#department').append(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching departments:', xhr.responseText);
+                }
+            });
+
+            // Fetch courses when a department is selected
+            $('#department').on('change', function() {
+                var departmentID = $(this).val();
+                if (departmentID) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'teen_titans/fetch_courses.php',
+                        data: { department_id: departmentID },
+                        dataType: 'html',
+                        success: function(response) {
+                            $('#course').html('<option value="">Select Course</option>').append(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching courses:', xhr.responseText);
+                        }
+                    });
+                } else {
+                    $('#course').html('<option value="">Select Course</option>');
+                }
+
+                // Update the chart based on the new selection
+                renderTotalVotesChart();
+            });
+
+            // Fetch year levels on page load
+            fetch('teen_titans/fetch_year_levels.php')
+                .then(response => response.json())
+                .then(data => {
+                    const yearLevels = data.year_levels;
+                    const selectElement = document.getElementById('year_level');
+                    selectElement.innerHTML = '<option value="">Select a year level</option>'; // Reset year level dropdown
+
+                    // Populate the select dropdown with the year levels
+                    yearLevels.forEach(level => {
+                        const option = document.createElement('option');
+                        option.value = level;
+                        option.textContent = level;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching year levels:', error));
+
+            // Fetch and render votes when year level or course is changed
+            $('#year_level, #course').on('change', function() {
+                renderTotalVotesChart();
+            });
+
+            // Fetch votes data and render chart
             async function fetchVotesData() {
                 try {
-                    const response = await fetch('teen_titans/fetch_votes.php');
+                    const department = $('#department').val();
+                    const course = $('#course').val();
+                    const year_level = $('#year_level').val();
+
+                    const response = await fetch(`teen_titans/fetch_votes.php?department=${department}&course=${course}&year_level=${year_level}`);
                     const data = await response.json();
                     return data.votes;
                 } catch (error) {
@@ -162,11 +228,15 @@
             async function renderTotalVotesChart() {
                 const votesData = await fetchVotesData();
 
+                // Remove the previous chart if it exists
+                $('#votesChartTotal').remove();
+                $('#chartsContainer').append('<canvas id="votesChartTotal" width="400" height="300"></canvas>');
+
                 if (votesData && votesData.length > 0) {
                     const candidates = votesData.map(vote => `Candidate ${vote.candidate_id}`);
                     const votes = votesData.map(vote => vote.vote_count);
 
-                    // Create the plot
+                    // Create the chart
                     const ctx = document.getElementById('votesChartTotal').getContext('2d');
                     new Chart(ctx, {
                         type: 'doughnut',
@@ -175,8 +245,8 @@
                             datasets: [{
                                 label: 'Total Votes for All Candidates',
                                 data: votes,
-                                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+                                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'],
                                 borderWidth: 1
                             }]
                         },
@@ -187,98 +257,21 @@
                                     display: true,
                                     position: 'top'
                                 }
-                            },
-                            scales: {
-                                x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Candidates'
-                                    }
-                                },
-                                y: {
-                                    title: {
-                                        display: true,
-                                        text: 'Number of Votes'
-                                    },
-                                    beginAtZero: true
-                                }
                             }
                         }
                     });
+                } else {
+                    console.log('No votes data available for the selected filters.');
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
-                // Add a container for the total votes chart
-                const chartsContainer = document.getElementById('chartsContainer');
-                const totalVotesChartDiv = document.createElement('div');
-                totalVotesChartDiv.innerHTML = `<h3>Total Votes by Candidate</h3><canvas id="votesChartTotal" width="400" height="300"></canvas>`;
-                chartsContainer.appendChild(totalVotesChartDiv);
-
-                // Render the total votes chart
-                renderTotalVotesChart();
-
-                // Initialize the program-specific charts
-                initializeCharts();
-            });
+            // Initial render of the chart on page load
+            renderTotalVotesChart();
+        });
 
         </script>
 
-          <script>
-              $(document).ready(function() {
-                // Fetch departments on page load
-                $.ajax({
-                    url: 'teen_titans/fetch_department.php',
-                    method: 'GET',
-                    dataType: 'html',
-                    success: function(response) {
-                        $('#department').append(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching departments:', xhr.responseText);
-                    }
-                });
 
-                // Fetch courses when a department is selected
-                $('#department').on('change', function() {
-                    var departmentID = $(this).val();
-                    if (departmentID) {
-                        $.ajax({
-                            type: 'POST',
-                            url: 'teen_titans/fetch_courses.php', 
-                            data: { department_id: departmentID },
-                            dataType: 'html',
-                            success: function(response) {
-                                $('#course').html(response);
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('Error fetching courses:', xhr.responseText);
-                            }
-                        });
-                    } else {
-                        $('#course').html('<option value="">Select Course</option>');
-                    }
-                });
-
-                // Fetch year levels on page load
-                fetch('teen_titans/fetch_year_levels.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        const yearLevels = data.year_levels;
-                        const selectElement = document.getElementById('year_level');
-
-                        // Populate the select dropdown with the year levels
-                        yearLevels.forEach(level => {
-                            const option = document.createElement('option');
-                            option.value = level; // Ensure 'year_level' matches your database schema
-                            option.textContent = level;
-                            selectElement.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error('Error fetching year levels:', error));
-            });
-
-        </script>
 
 
 </body>

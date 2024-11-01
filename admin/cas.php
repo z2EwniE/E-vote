@@ -1,3 +1,10 @@
+
+        <?php
+
+        include_once __DIR__ . "/../config/init.php";
+
+        ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,102 +98,19 @@
 							target="_blank">Red Dragons<i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card">
-								<div class="card-header pb-0">
-									<div class="card-actions float-end">
-										<div class="dropdown position-relative">
-											<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-												<i class="align-middle" data-feather="more-horizontal"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-end">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Registered Students</h5>
-								</div>  
-								<div class="card-body">
-                                <div class="row mb-3">
-                                  <div class="col-md-6">
-                             <input type="text" id="searchStudent" class="form-control" 
-                                    placeholder="Search by Student ID Number ONLY" onkeyup="restrictInput(event); searchTable()"
-                                    maxlength="9">
-                              </div>
-                             </div>
-                             <div class="container mt-5">
-									<table class="table table-responsive table-striped" id="studentTable" style="width:100%">
-										<thead class="thead-dark">
-											<tr>
-                                                <th onclick="sortTable(0)" class="sortable">No. 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th onclick="sortTable(1)" class="sortable">Student ID No. 
-                                                    </th>
-                                                <th onclick="sortTable(2)" class="sortable">Name 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">Year Level 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th>Email </th>
-                                                <th>Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-                                                <td>1</td>
-                                                <td>2021001</td>
-                                                <td>bald</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>stussy@example.com</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-										</tr>
-
-											<tr>
-                                                <td>2</td>
-                                                <td>2021001</td>
-                                                <td>notpa</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>dagat_anglit@example.com</td>
-                                                <td><span class="badge bg-warning">Inactive</span></td>
-										</tr>
-
-                                            <tr>
-                                                <td>3</td>
-                                                <td>2021001</td>
-                                                <td>Desert Anfel</td>
-                                                <td class="d-none d-md-table-cell">4ft Year</td>
-                                                <td>otentic@example.com</td>
-                                                <td><span class="badge bg-warning">Inactive</span></td>
-										</tr>
-
-                                            <tr>
-                                                <td>4</td>
-                                                <td>2021001</td>
-                                                <td>SDV Dragunov</td>
-                                                <td class="d-none d-md-table-cell">1rd Year</td>
-                                                <td>mikekak_smol@example.com</td>
-                                                <td><span class="badge bg-danger">Deleted</span></td>
-										</tr>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+                    <div class="filters-section">
+                        <div class="department-filters">
+                            <?php
+                            foreach ($departments as $row) {
+                                echo "<button class='dept-button' data-dept-id='{$row['department_id']}'>{$row['department_name']}</button>";
+                            }
+                            ?>
+                        </div>
                     </div>
-
-					
-										
-
+                </div>
+            </main>
 
 
-                    <!--end of pages -->
-
-				</div>
-			</main>
 
 			<footer class="footer">
 				<div class="container-fluid">
@@ -306,6 +230,62 @@
     });
         }
 
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.dept-button').click(function() {
+                $('.dept-button').removeClass('active');
+                $(this).addClass('active');
+                let deptId = $(this).data('dept-id');
+                
+                $.ajax({
+                    url: 'teen_titans/fetch_courses.php',
+                    data: { department_id: deptId },
+                    success: function(courses) {
+                        $('.course-filters').html(courses);
+                        $('.course-button:first').click();
+                    }
+                });
+            });
+
+            $('.dept-button:first').click();
+
+            $(document).on('click', '.course-button', function() {
+                $('.course-button').removeClass('active');
+                $(this).addClass('active');
+                let courseId = $(this).data('course-id');
+        
+                $.ajax({
+                    url: 'students.php',
+                    data: { course_id: courseId },
+                    success: function(students) {
+                        $('.grid').html(students);
+                    }
+                });
+            });
+
+            $(document).on('keyup', '.search-input', function() {
+                let searchText = $(this).val().toLowerCase();
+                let yearCard = $(this).closest('.year-card');
+                
+                yearCard.find('tbody tr').each(function() {
+                    let rowText = $(this).text().toLowerCase();
+                    $(this).toggle(rowText.indexOf(searchText) > -1);
+                });
+
+                let visibleRows = yearCard.find('tbody tr:visible').length;
+                let emptyMessage = yearCard.find('.empty-message');
+                
+                if (visibleRows === 0) {
+                    if (emptyMessage.length === 0) {
+                        yearCard.find('tbody').append('<tr class="empty-message"><td colspan="3">No students found</td></tr>');
+                    }
+                } else {
+                    emptyMessage.remove();
+                }
+            });
+        });
     </script>
 
     </body>
