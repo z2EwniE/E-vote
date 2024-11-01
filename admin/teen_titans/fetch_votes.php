@@ -11,30 +11,35 @@ try {
 
     // Base query with join to the students table
     $query = "
-        SELECT v.candidate_id, s.course, s.year_level, COUNT(*) as vote_count 
-        FROM votes v
-        LEFT JOIN students s ON v.student_id = s.id
-        WHERE 1=1
+        SELECT 
+            candidates.candidate_name,
+            positions.position_name,
+            COUNT(votes.vote_id) AS total_votes
+        FROM votes
+        INNER JOIN students ON votes.student_id = students.id
+        INNER JOIN candidates ON votes.candidate_id = candidates.candidate_id
+        INNER JOIN positions ON candidates.candidate_position = positions.position_id
+        WHERE 1
     ";
 
     // Add conditions dynamically
     $params = [];
 
     if (!empty($department)) {
-        $query .= " AND s.department = :department";
+        $query .= " AND students.department = :department";
         $params[':department'] = $department;
     }
     if (!empty($course)) {
-        $query .= " AND s.course = :course";
+        $query .= " AND students.course = :course";
         $params[':course'] = $course;
     }
     if (!empty($year_level)) {
-        $query .= " AND s.year_level = :year_level";
+        $query .= " AND students.year_level = :year_level";
         $params[':year_level'] = $year_level;
     }
 
-    // Group by candidate_id, course, and year_level
-    $query .= " GROUP BY v.candidate_id, s.course, s.year_level";
+    // Group by candidate_id, position_name, and candidate_name
+    $query .= " GROUP BY candidates.candidate_id, positions.position_name, candidates.candidate_name;";
 
     $stmt = $db->prepare($query);
 
@@ -48,10 +53,9 @@ try {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $votesData[] = [
-            'candidate_id' => $row['candidate_id'],
-            'course' => $row['course'],
-            'year_level' => $row['year_level'],
-            'vote_count' => $row['vote_count']
+            'candidate_name' => $row['candidate_name'],
+            'position_name' => $row['position_name'],
+            'total_votes' => $row['total_votes']
         ];
     }
 
