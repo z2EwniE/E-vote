@@ -146,133 +146,129 @@
     <script src="js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function() {
+    // Fetch departments on page load
+    $.ajax({
+        url: 'teen_titans/fetch_department.php',
+        method: 'GET',
+        dataType: 'html',
+        success: function(response) {
+            $('#department').append(response);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching departments:', xhr.responseText);
+        }
+    });
 
-        <script>
-            $(document).ready(function() {
-            // Fetch departments on page load
+    // Fetch courses when a department is selected
+    $('#department').on('change', function() {
+        var departmentID = $(this).val();
+        if (departmentID) {
             $.ajax({
-                url: 'teen_titans/fetch_department.php',
-                method: 'GET',
+                type: 'POST',
+                url: 'teen_titans/fetch_courses.php',
+                data: { department_id: departmentID },
                 dataType: 'html',
                 success: function(response) {
-                    $('#department').append(response);
+                    $('#course').html('<option value="">Select Course</option>').append(response);
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error fetching departments:', xhr.responseText);
+                    console.error('Error fetching courses:', xhr.responseText);
                 }
             });
+        } else {
+            $('#course').html('<option value="">Select Course</option>');
+        }
 
-            // Fetch courses when a department is selected
-            $('#department').on('change', function() {
-                var departmentID = $(this).val();
-                if (departmentID) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'teen_titans/fetch_courses.php',
-                        data: { department_id: departmentID },
-                        dataType: 'html',
-                        success: function(response) {
-                            $('#course').html('<option value="">Select Course</option>').append(response);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error fetching courses:', xhr.responseText);
+        // Update the chart based on the new selection
+        renderTotalVotesChart();
+    });
+
+    // Fetch year levels on page load
+    fetch('teen_titans/fetch_year_levels.php')
+        .then(response => response.json())
+        .then(data => {
+            const yearLevels = data.year_levels;
+            const selectElement = document.getElementById('year_level');
+            selectElement.innerHTML = '<option value="">Select a year level</option>'; // Reset year level dropdown
+
+            // Populate the select dropdown with the year levels
+            yearLevels.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level;
+                option.textContent = level;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching year levels:', error));
+
+    // Fetch and render votes when year level or course is changed
+    $('#year_level, #course').on('change', function() {
+        renderTotalVotesChart();
+    });
+
+    // Fetch votes data and render chart
+    async function fetchVotesData() {
+        try {
+            const department = $('#department').val();
+            const course = $('#course').val();
+            const year_level = $('#year_level').val();
+
+            const response = await fetch(`teen_titans/fetch_votes.php?department=${department}&course=${course}&year_level=${year_level}`);
+            const data = await response.json();
+            return data.votes;
+        } catch (error) {
+            console.error('Error fetching votes data:', error);
+            return [];
+        }
+    }
+
+    async function renderTotalVotesChart() {
+        const votesData = await fetchVotesData();
+
+        // Remove the previous chart if it exists
+        $('#votesChartTotal').remove();
+        $('#chartsContainer').append('<canvas id="votesChartTotal" width="400" height="300"></canvas>');
+
+        if (votesData && votesData.length > 0) {
+            const candidates = votesData.map(vote => `Candidate ${vote.candidate_id}`);
+            const votes = votesData.map(vote => vote.vote_count);
+
+            // Create the chart
+            const ctx = document.getElementById('votesChartTotal').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: candidates,
+                    datasets: [{
+                        label: 'Total Votes for All Candidates',
+                        data: votes,
+                        backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+                        borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
                         }
-                    });
-                } else {
-                    $('#course').html('<option value="">Select Course</option>');
+                    }
                 }
-
-                // Update the chart based on the new selection
-                renderTotalVotesChart();
             });
+        } else {
+            console.log('No votes data available for the selected filters.');
+        }
+    }
 
-            // Fetch year levels on page load
-            fetch('teen_titans/fetch_year_levels.php')
-                .then(response => response.json())
-                .then(data => {
-                    const yearLevels = data.year_levels;
-                    const selectElement = document.getElementById('year_level');
-                    selectElement.innerHTML = '<option value="">Select a year level</option>'; // Reset year level dropdown
+    // Initial render of the chart on page load
+    renderTotalVotesChart();
+});
 
-                    // Populate the select dropdown with the year levels
-                    yearLevels.forEach(level => {
-                        const option = document.createElement('option');
-                        option.value = level;
-                        option.textContent = level;
-                        selectElement.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching year levels:', error));
-
-            // Fetch and render votes when year level or course is changed
-            $('#year_level, #course').on('change', function() {
-                renderTotalVotesChart();
-            });
-
-            // Fetch votes data and render chart
-            async function fetchVotesData() {
-                try {
-                    const department = $('#department').val();
-                    const course = $('#course').val();
-                    const year_level = $('#year_level').val();
-
-                    const response = await fetch(`teen_titans/fetch_votes.php?department=${department}&course=${course}&year_level=${year_level}`);
-                    const data = await response.json();
-                    return data.votes;
-                } catch (error) {
-                    console.error('Error fetching votes data:', error);
-                    return [];
-                }
-            }
-
-            async function renderTotalVotesChart() {
-                const votesData = await fetchVotesData();
-
-                // Remove the previous chart if it exists
-                $('#votesChartTotal').remove();
-                $('#chartsContainer').append('<canvas id="votesChartTotal" width="400" height="300"></canvas>');
-
-                if (votesData && votesData.length > 0) {
-                    const candidates = votesData.map(vote => `Candidate ${vote.candidate_id}`);
-                    const votes = votesData.map(vote => vote.vote_count);
-
-                    // Create the chart
-                    const ctx = document.getElementById('votesChartTotal').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: candidates,
-                            datasets: [{
-                                label: 'Total Votes for All Candidates',
-                                data: votes,
-                                backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-                                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    position: 'top'
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    console.log('No votes data available for the selected filters.');
-                }
-            }
-
-            // Initial render of the chart on page load
-            renderTotalVotesChart();
-        });
-
-        </script>
-
-
-
+    </script>
 
 </body>
 
