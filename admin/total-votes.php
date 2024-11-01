@@ -85,11 +85,10 @@
                     <div class="card">
                         <div class="card-header">
                         <div class="d-flex float-end w-25 m-2">
-                                <select name="courses" id="courses" class="form-control">
-                                    <option value="1">CAS</option>
-                                    <option value="2">CTE</option>
-                                    <option value="3">CBME</option>
-                                </select>
+                        <select type="text" id="course" name="course" class="form-control" required>
+                    <option value="">Select Course</option> 
+                   
+                    </select>
                             </div>
    
                             <div class="d-flex float-end w-25 m-2">
@@ -146,6 +145,7 @@
     </div>
     <script src="js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
         <script>
             async function fetchVotesData() {
@@ -221,8 +221,6 @@
                 // Initialize the program-specific charts
                 initializeCharts();
             });
-
-          
 
         </script>
 

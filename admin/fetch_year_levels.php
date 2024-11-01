@@ -6,7 +6,7 @@
         try {
             // Fetch year levels
             $sql = "SELECT DISTINCT year_level FROM students"; // Update the table and column names to match your schema
-            $stmt = $pdo->query($sql);
+            $stmt = $db->query($sql);
 
             $year_levels = [];
             if ($stmt->rowCount() > 0) {

@@ -4,7 +4,7 @@
         try {
             // Fetch departments
             $sql = "SELECT * FROM department";
-            $stmt = $pdo->query($sql);
+            $stmt = $db->query($sql);
 
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

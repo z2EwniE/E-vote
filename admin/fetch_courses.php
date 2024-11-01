@@ -7,7 +7,7 @@
 
                 // Fetch courses based on the selected department
                 $sql = "SELECT * FROM course WHERE course_department = ?";
-                $stmt = $pdo->prepare($sql);
+                $stmt = $db->prepare($sql);
                 $stmt->execute([$department_id]);
 
                 if ($stmt->rowCount() > 0) {
