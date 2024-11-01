@@ -1,5 +1,5 @@
     <?php
-    include_once __DIR__ . '/../config/init.php';
+    include_once __DIR__ . '/../../config/init.php';
 
     header('Content-Type: application/json');
 

@@ -150,7 +150,7 @@
         <script>
             async function fetchVotesData() {
                 try {
-                    const response = await fetch('fetch_votes.php');
+                    const response = await fetch('teen_titans/fetch_votes.php');
                     const data = await response.json();
                     return data.votes;
                 } catch (error) {
@@ -228,7 +228,7 @@
               $(document).ready(function() {
                 // Fetch departments on page load
                 $.ajax({
-                    url: 'fetch_department.php',
+                    url: 'teen_titans/fetch_department.php',
                     method: 'GET',
                     dataType: 'html',
                     success: function(response) {
@@ -245,7 +245,7 @@
                     if (departmentID) {
                         $.ajax({
                             type: 'POST',
-                            url: 'fetch_courses.php', 
+                            url: 'teen_titans/fetch_courses.php', 
                             data: { department_id: departmentID },
                             dataType: 'html',
                             success: function(response) {
@@ -261,7 +261,7 @@
                 });
 
                 // Fetch year levels on page load
-                fetch('fetch_year_levels.php')
+                fetch('teen_titans/fetch_year_levels.php')
                     .then(response => response.json())
                     .then(data => {
                         const yearLevels = data.year_levels;
