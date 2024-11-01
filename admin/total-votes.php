@@ -68,6 +68,10 @@
         th.sortable i.fa-sort-down {
             color: #000;
         }
+
+        #chartsContainer {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -146,133 +150,209 @@
     <script src="js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function() {
+    // Fetch departments on page load
+    fetchDepartments();
 
-        <script>
-            $(document).ready(function() {
-            // Fetch departments on page load
-            $.ajax({
-                url: 'teen_titans/fetch_department.php',
-                method: 'GET',
-                dataType: 'html',
-                success: function(response) {
-                    $('#department').append(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching departments:', xhr.responseText);
-                }
-            });
+    // Fetch courses when a department is selected
+    $('#department').on('change', function() {
+        const departmentID = $(this).val();
+        if (departmentID) {
+            fetchCourses(departmentID);
+        } else {
+            $('#course').html('<option value="">Select Course</option>');
+        }
+        renderTotalVotesChart(); // Update the chart when a new department is selected
+    });
 
-            // Fetch courses when a department is selected
-            $('#department').on('change', function() {
-                var departmentID = $(this).val();
-                if (departmentID) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'teen_titans/fetch_courses.php',
-                        data: { department_id: departmentID },
-                        dataType: 'html',
-                        success: function(response) {
-                            $('#course').html('<option value="">Select Course</option>').append(response);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error fetching courses:', xhr.responseText);
-                        }
-                    });
-                } else {
-                    $('#course').html('<option value="">Select Course</option>');
-                }
+    // Fetch year levels on page load
+    fetchYearLevels();
 
-                // Update the chart based on the new selection
-                renderTotalVotesChart();
-            });
+    // Fetch and render votes when year level or course is changed
+    $('#year_level, #course').on('change', function() {
+        renderTotalVotesChart();
+    });
 
-            // Fetch year levels on page load
-            fetch('teen_titans/fetch_year_levels.php')
-                .then(response => response.json())
-                .then(data => {
-                    const yearLevels = data.year_levels;
-                    const selectElement = document.getElementById('year_level');
-                    selectElement.innerHTML = '<option value="">Select a year level</option>'; // Reset year level dropdown
+    // Initial render of the chart on page load
+    renderTotalVotesChart();
 
-                    // Populate the select dropdown with the year levels
-                    yearLevels.forEach(level => {
-                        const option = document.createElement('option');
-                        option.value = level;
-                        option.textContent = level;
-                        selectElement.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching year levels:', error));
-
-            // Fetch and render votes when year level or course is changed
-            $('#year_level, #course').on('change', function() {
-                renderTotalVotesChart();
-            });
-
-            // Fetch votes data and render chart
-            async function fetchVotesData() {
-                try {
-                    const department = $('#department').val();
-                    const course = $('#course').val();
-                    const year_level = $('#year_level').val();
-
-                    const response = await fetch(`teen_titans/fetch_votes.php?department=${department}&course=${course}&year_level=${year_level}`);
-                    const data = await response.json();
-                    return data.votes;
-                } catch (error) {
-                    console.error('Error fetching votes data:', error);
-                    return [];
-                }
+    // Function to fetch departments
+    function fetchDepartments() {
+        $.ajax({
+            url: 'teen_titans/fetch_department.php',
+            method: 'GET',
+            dataType: 'html',
+            success: function(response) {
+                $('#department').append(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching departments:', xhr.responseText);
             }
+        });
+    }
 
-            async function renderTotalVotesChart() {
-                const votesData = await fetchVotesData();
+    // Function to fetch courses based on department ID
+    function fetchCourses(departmentID) {
+        $.ajax({
+            type: 'POST',
+            url: 'teen_titans/fetch_courses.php',
+            data: { department_id: departmentID },
+            dataType: 'html',
+            success: function(response) {
+                $('#course').html('<option value="">Select Course</option>').append(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching courses:', xhr.responseText);
+            }
+        });
+    }
 
-                // Remove the previous chart if it exists
-                $('#votesChartTotal').remove();
-                $('#chartsContainer').append('<canvas id="votesChartTotal" width="400" height="300"></canvas>');
+    // Function to fetch year levels
+    function fetchYearLevels() {
+        fetch('teen_titans/fetch_year_levels.php')
+            .then(response => response.json())
+            .then(data => {
+                const yearLevels = data.year_levels;
+                const selectElement = document.getElementById('year_level');
+                selectElement.innerHTML = '<option value="">Select a year level</option>';
 
-                if (votesData && votesData.length > 0) {
-                    const candidates = votesData.map(vote => `Candidate ${vote.candidate_id}`);
-                    const votes = votesData.map(vote => vote.vote_count);
+                yearLevels.forEach(level => {
+                    const option = document.createElement('option');
+                    option.value = level;
+                    option.textContent = level;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching year levels:', error));
+    }
 
-                    // Create the chart
-                    const ctx = document.getElementById('votesChartTotal').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: candidates,
-                            datasets: [{
-                                label: 'Total Votes for All Candidates',
-                                data: votes,
-                                backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-                                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    position: 'top'
-                                }
+    // Function to fetch votes data
+    async function fetchVotesData() {
+        try {
+            const department = $('#department').val();
+            const course = $('#course').val();
+            const year_level = $('#year_level').val();
+
+            const response = await fetch(`teen_titans/fetch_votes.php?department=${department}&course=${course}&year_level=${year_level}`);
+            const data = await response.json();
+            return data.votes;
+        } catch (error) {
+            console.error('Error fetching votes data:', error);
+            return [];
+        }
+    }
+
+// Function to render the total votes charts using ApexCharts
+async function renderTotalVotesChart() {
+    try {
+        const votesData = await fetchVotesData();
+
+        // Debugging: Log the data fetched
+        console.log("Votes Data:", votesData);
+
+        // Remove all previous charts if they exist
+        $('#chartsContainer').empty();
+
+        if (votesData && votesData.length > 0) {
+            // Prepare data for the chart by grouping by position
+            const positionMap = {};
+            votesData.forEach(vote => {
+                if (!positionMap[vote.position_name]) {
+                    positionMap[vote.position_name] = {
+                        position: vote.position_name,
+                        candidates: [],
+                        votes: []
+                    };
+                }
+                positionMap[vote.position_name].candidates.push(vote.candidate_name);
+                positionMap[vote.position_name].votes.push(vote.total_votes);
+            });
+
+            // Debugging: Log the grouped position data
+            console.log("Position Map:", positionMap);
+
+            // Create separate charts for each position
+            for (const position in positionMap) {
+                const positionData = positionMap[position];
+
+                // Add a new container for each position chart
+                const chartId = `votesChartTotal_${position.replace(/\s+/g, '_')}`;
+                $('#chartsContainer').append(`<div id="${chartId}" style="width: 100%; max-width: 600px; margin-bottom: 20px;"></div>`);
+
+                // Create the chart using ApexCharts
+                var options = {
+                    chart: {
+                        type: 'bar',
+                        height: 400,
+                        stacked: false
+                    },
+                    series: [{
+                        name: positionData.position,
+                        data: positionData.votes
+                    }],
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            dataLabels: {
+                                position: 'top'
                             }
                         }
-                    });
-                } else {
-                    console.log('No votes data available for the selected filters.');
-                }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function (val) {
+                            return val;
+                        },
+                        offsetY: -20,
+                        style: {
+                            fontSize: '12px',
+                            colors: ['#304758']
+                        }
+                    },
+                    xaxis: {
+                        categories: positionData.candidates,
+                        title: {
+                            text: 'Candidates'
+                        }
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Total Votes'
+                        }
+                    },
+                    legend: {
+                        position: 'top'
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val) {
+                                return val;
+                            }
+                        }
+                    }
+                };
+
+                var chart = new ApexCharts(document.querySelector(`#${chartId}`), options);
+                
+                // Debugging: Check if chart instance is created successfully
+                console.log(`Rendering chart for position: ${position}`);
+                await chart.render(); // Render each chart
             }
+        } else {
+            console.log('No votes data available for the selected filters.');
+        }
+    } catch (error) {
+        console.error('An error occurred while rendering the total votes chart:', error);
+    }
+}
 
-            // Initial render of the chart on page load
-            renderTotalVotesChart();
-        });
+});
 
-        </script>
-
-
-
+    </script>
 
 </body>
 
