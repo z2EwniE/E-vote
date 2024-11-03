@@ -7,7 +7,7 @@
 
             try {
 
-                $sql = "SELECT * FROM votes 
+                $sql = "SELECT students.*, positions.*,   partylists.*, CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name  FROM votes 
                             INNER JOIN students ON students.id = votes.student_id
                             INNER JOIN course ON students.course = course.course_id
                             INNER JOIN department ON department.department_id = students.department

@@ -18,8 +18,9 @@ try {
         $position_name = $position['position_name'];
 
         // Updated Query to get candidates for each position (with correct table name: partylists)
-        $candidatesQuery = "SELECT candidates.*, department.department_name, partylists.partylist_name, partylists.partylist_id 
+        $candidatesQuery = "SELECT candidates.*,             CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name, partylists.partylist_name, partylists.partylist_id 
                             FROM candidates
+                            INNER JOIN students ON candidates.student_id = students.id
                             INNER JOIN department ON candidates.department = department.department_id
                             INNER JOIN partylists ON candidates.partylist_id = partylists.partylist_id
                             WHERE candidates.candidate_position = :position_id";

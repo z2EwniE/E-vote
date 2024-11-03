@@ -1,3 +1,9 @@
+
+<?php
+
+include_once __DIR__ . "/../config/init.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,57 +124,44 @@
                              </div>
                              <div class="container mt-5">
 									<table class="table table-responsive table-striped" id="studentTable" style="width:100%">
-										<thead class="thead-dark">
-											<tr>
-                                                <th onclick="sortTable(0)" class="sortable">No. 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th onclick="sortTable(1)" class="sortable">Student ID No. 
+                                    <thead class="thead-dark">
+                                                <tr>
+                                                   
+                                                    <th onclick="sortTable(1)" class="sortable">Student ID No.
                                                     </th>
-                                                <th onclick="sortTable(2)" class="sortable">Name 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">Year Level 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th>Email </th>
-                                                <th>Status</th>
-											</tr>
-										</thead>
+                                                    <th onclick="sortTable(2)" class="sortable">Name
+                                                        <i class="fas fa-sort"></i>
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">
+                                                        Year Level
+                                                        <i class="fas fa-sort"></i>
+                                                    </th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
 										<tbody>
-											<tr>
-                                                <td>1</td>
-                                                <td>2021001</td>
-                                                <td>bald</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>stussy@example.com</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-										</tr>
+                                        <?php
+                                                $sql = "SELECT * FROM `students` INNER JOIN department On students.department = department.department_id
+                                                INNER JOIN course ON students.course = course.course_id WHERE department.department_id = 2;";
+                                                $stmt = $db->prepare($sql);
+                                                $stmt->execute();
+                                                
+                                                $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-											<tr>
-                                                <td>2</td>
-                                                <td>2021001</td>
-                                                <td>notpa</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>dagat_anglit@example.com</td>
-                                                <td><span class="badge bg-warning">Inactive</span></td>
-										</tr>
+                                                foreach($row as $row):
 
-                                            <tr>
-                                                <td>3</td>
-                                                <td>2021001</td>
-                                                <td>Desert Anfel</td>
-                                                <td class="d-none d-md-table-cell">4ft Year</td>
-                                                <td>otentic@example.com</td>
-                                                <td><span class="badge bg-warning">Inactive</span></td>
-										</tr>
-
-                                            <tr>
-                                                <td>4</td>
-                                                <td>2021001</td>
-                                                <td>SDV Dragunov</td>
-                                                <td class="d-none d-md-table-cell">1rd Year</td>
-                                                <td>mikekak_smol@example.com</td>
-                                                <td><span class="badge bg-danger">Deleted</span></td>
-										</tr>
-
+                                                $name = $row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name'];
+                                                $course = preg_replace('/[^A-Z]/', '', $row['course']);
+                                                $year = $course . ' ' . $row['year_level'];
+                                            ?>
+                                                <tr>
+                                                    <td><?= $row['student_id'] ?></td>
+                                                    <td><?= $name ?></td>
+                                                    <td class="d-none d-md-table-cell"><?= $year ?></td>
+                                                    <td><span class="badge bg-success">Active</span></td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                              
 										</tbody>
 									</table>
 								</div>

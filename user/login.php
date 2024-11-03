@@ -34,18 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_votes->execute();
             $result_votes = $stmt_votes->get_result();
 
-            if ($result_votes->num_rows > 0) {
-                // Student has already voted
-                $message = "You have already voted! You cannot vote again.";
-            } else {
-                // Set session variables and allow login
+                $_SESSION['id'] = $student['id'];
                 $_SESSION['student_id'] = $student['student_id'];
                 $_SESSION['first_name'] = $student['first_name'];
                 $_SESSION['last_name'] = $student['last_name'];
 
                 header('Location: index.php'); // Redirect to voting page
                 exit();
-            }
+            
         } else {
             $message = "Invalid Student ID!";
         }
