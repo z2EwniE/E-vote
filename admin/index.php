@@ -339,7 +339,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                                 <?= date("F j, Y \a\\t h:i A", strtotime($r['voted_at'])); ?>
                                             </td>
                                             <td>
-                                                <button data-id="<?= $r['student_id']; ?>"
+                                                <button data-id="<?= $r['id']; ?>"
                                                     class="btn btn-sm btn-outline-success view-votes"><i
                                                         class="fa fa-eye"></i></button>
                                             </td>
