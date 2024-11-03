@@ -1,11 +1,33 @@
 <?php
 session_start();
 
+
+function hasVoted(){
+    include_once __DIR__ . '/db.php';
+
+
+    $student_id = $_SESSION['id'];
+
+    $sql = "SELECT COUNT(*) AS vote_count FROM votes WHERE student_id = :student_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $hasVoted = $result['vote_count'] == 0;
+
+    return $hasVoted;
+
+}
+
+
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['student_id'])) {
     header('Location: login.php'); 
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +46,8 @@ if (!isset($_SESSION['student_id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="css/light.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script>
+    </script>
 </head>
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
@@ -44,6 +68,8 @@ if (!isset($_SESSION['student_id'])) {
                     </div>
                 </section>
 
+
+                <?php if(hasVoted()): ?>
                 <section class="vote-section mt-4">
                     <div class="container-fluid p-0 mt-4">
                         <h4 class="section-title mt-4">Vote for Your Candidates</h4>
@@ -60,6 +86,24 @@ if (!isset($_SESSION['student_id'])) {
                         </div>
                     </div>
                 </section>
+                <?php else: ?>
+
+                    <section class="vote-section mt-4">
+                    <div class="container-fluid p-0 mt-4" id="vote-section">
+                    <table class="table">
+                        <thead>
+                            <th>Position</th>
+                            <th>Candidate Name</th>
+                            <th>Candidate Partylist</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    </div>
+                    </section>
+
+                    <?php endif; ?>
 
                 <!-- Confirmation Modal -->
                 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
@@ -97,6 +141,44 @@ if (!isset($_SESSION['student_id'])) {
     <script src="js/app.js"></script>
 
     <script>
+
+$(document).ready(function() {
+
+    let student_id = "<?php echo $_SESSION['student_id']; ?>";
+
+
+    $.ajax({
+        type: 'POST',
+        url: '../admin/process/view-votes-by-id.php',
+        data: {
+            action: 1,
+            student_id: student_id
+        },
+        success: function(res) {
+            var res = JSON.parse(res);
+
+            if (res.success) {
+                // Clear the previous table content
+                $('#vote-section .table tbody').empty();
+
+                // Loop through each voting record and add to the table
+                res.data.forEach(function(vote) {
+                    let row = `
+                        <tr>
+                            <td>${vote.position_name}</td>
+                            <td>${vote.candidate_name}</td>
+                            <td>${vote.partylist_name}</td>
+                            
+                        </tr>
+                    `;
+                    $('#vote-section .table tbody').append(row);
+                });
+
+            }
+        }
+    });
+});
+
     const selectedCandidates = {};
 
     function selectCard(positionName, candidateId) {

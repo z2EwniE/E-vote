@@ -98,15 +98,83 @@
 							target="_blank">Red Dragons<i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
-                    <div class="filters-section">
-                        <div class="department-filters">
-                            <?php
-                            foreach ($departments as $row) {
-                                echo "<button class='dept-button' data-dept-id='{$row['department_id']}'>{$row['department_name']}</button>";
-                            }
-                            ?>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <div class="card-actions float-end">
+                                        <div class="dropdown position-relative">
+                                            <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title mb-0">Registered Students</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <input type="text" id="searchStudent" class="form-control"
+                                                placeholder="Search by Student ID Number ONLY"
+                                                onkeyup="restrictInput(event); searchTable()" maxlength="9">
+                                        </div>
+                                    </div>
+                                    <div class="container mt-5">
+                                        <table class="table table-responsive table-striped" id="studentTable"
+                                            style="width:100%">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                   
+                                                    <th onclick="sortTable(1)" class="sortable">Student ID No.
+                                                    </th>
+                                                    <th onclick="sortTable(2)" class="sortable">Name
+                                                        <i class="fas fa-sort"></i>
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">
+                                                        Year Level
+                                                        <i class="fas fa-sort"></i>
+                                                    </th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                                $sql = "SELECT * FROM `students` INNER JOIN department On students.department = department.department_id
+                                                INNER JOIN course ON students.course = course.course_id WHERE department.department_id = 1;";
+                                                $stmt = $db->prepare($sql);
+                                                $stmt->execute();
+                                                
+                                                $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                foreach($row as $row):
+
+                                                $name = $row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name'];
+                                                $course = preg_replace('/[^A-Z]/', '', $row['course']);
+                                                $year = $course . ' ' . $row['year_level'];
+                                            ?>
+                                                <tr>
+                                                    <td><?= $row['student_id'] ?></td>
+                                                    <td><?= $name ?></td>
+                                                    <td class="d-none d-md-table-cell"><?= $year ?></td>
+                                                    <td><span class="badge bg-success">Active</span></td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                              
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+
                 </div>
             </main>
 

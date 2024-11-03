@@ -1,3 +1,6 @@
+<?php
+include_once __DIR__ . "/../config/init.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -121,41 +124,60 @@
                               </div>
                              </div>
                              <div class="container mt-5">
-									<table class="table table-responsive table-striped" id="studentTable" style="width:100%">
-										<thead class="thead-dark">
-											<tr>
-                                                <th onclick="sortTable(0)" class="sortable">No. 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th onclick="sortTable(1)" class="sortable">Student ID No. 
-                                                    </th>
-                                                <th onclick="sortTable(2)" class="sortable">Name 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">Year Level 
-                                                    <i class="fas fa-sort"></i></th>
-                                                <th>Department </th>
-                                                <th>Partylist </th>
-                                                <th>Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-                                                <td>1</td>
-                                                <td>2021001</td>
-                                                <td>bald</td>
-                                                <td class="d-none d-md-table-cell">3rd Year</td>
-                                                <td>CAS</td>
-                                                <td>buto    </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-danger"><i class="fa fa-trash"> </i></button>
-                                                    </div>
-                                                </td>
-										</tr>
+                             <table class="table table-responsive table-striped" id="studentTable" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th onclick="sortTable(1)" class="sortable">Student ID No.</th>
+            <th onclick="sortTable(2)" class="sortable">Name <i class="fas fa-sort"></i></th>
+            <th class="d-none d-md-table-cell sortable" onclick="sortTable(3)">Year Level <i class="fas fa-sort"></i></th>
+            <th>Department</th>
+            <th>Partylist</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+// Define SQL query with JOINs to get data from related tables
+$sql = "SELECT students.student_id, students.first_name, students.middle_name, students.last_name, students.course, students.year_level, 
+               department.department_name, partylists.partylist_name 
+        FROM `candidates` 
+        INNER JOIN students ON students.id = candidates.candidate_id 
+        INNER JOIN positions ON positions.position_id = candidates.candidate_position 
+        INNER JOIN department ON candidates.department = department.department_id 
+        INNER JOIN partylists ON partylists.partylist_id = candidates.partylist_id";
 
+// Prepare and execute the statement
+$stmt = $db->prepare($sql);
+$stmt->execute();
 
-										</tbody>
-									</table>
+// Initialize row number
+$row_number = 1;
+
+// Loop through the results and populate each row
+foreach ($stmt as $row) {
+    
+// Construct full name and year level/course
+    $name = $row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name'];
+    $course = preg_replace('/[^A-Z]/', '', $row['course']);
+    $year = $course . ' ' . $row['year_level'];
+    echo "<tr>";
+    echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
+    echo "<td>" . htmlspecialchars($name) . "</td>";
+    echo "<td class='d-none d-md-table-cell'>" . htmlspecialchars($year) . "</td>";
+    echo "<td>" . htmlspecialchars($row['department_name']) . "</td>";
+    echo "<td>" . htmlspecialchars($row['partylist_name']) . "</td>";
+    echo "<td>
+            <div class='btn-group'>
+                <button class='btn btn-danger'><i class='fa fa-trash'></i></button>
+            </div>
+          </td>";
+    echo "</tr>";
+}
+?>
+
+    </tbody>
+</table>
+
 								</div>
 							</div>
 						</div>

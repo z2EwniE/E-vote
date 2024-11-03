@@ -7,14 +7,30 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-                <!-- Display the username if it's set in the session -->
-                <?php if (isset($_SESSION['student_id'])): ?>
-                    <a class="text-muted"><strong>ID: <?php echo $_SESSION['student_id']; ?></strong></a>
-                <?php else: ?>
-                    <a class="text-muted"><strong>Name: Guest</strong></a>
-                <?php endif; ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="platforms.php">Platforms</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="apply-candidacy.php">Apply for Candidacy</a>
+            </li>
+            <li class="nav-item dropdown">
+    <?php if (isset($_SESSION['student_id'])): ?>
+        <a class="nav-link dropdown-toggle text-muted" href="#" id="studentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <strong>ID: <?php echo $_SESSION['student_id']; ?></strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="studentDropdown">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+        </ul>
+
+    <?php endif; ?>
+</li>
+
         </ul>
     </div>
 

@@ -12,7 +12,7 @@ try {
     // Base query with join to the students table
     $query = "
         SELECT 
-            candidates.candidate_name,
+            CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name, 
             positions.position_name,
             COUNT(votes.vote_id) AS total_votes
         FROM votes
@@ -39,7 +39,7 @@ try {
     }
 
     // Group by candidate_id, position_name, and candidate_name
-    $query .= " GROUP BY candidates.candidate_id, positions.position_name, candidates.candidate_name;";
+    $query .= " GROUP BY candidates.candidate_id, positions.position_name, candidates.student_id;";
 
     $stmt = $db->prepare($query);
 
