@@ -275,213 +275,55 @@ if (!$login->isLoggedIn()) {
 									<thead>
 										<tr>
 											<th>Student Name</th>
-											<th class="d-none d-xxl-table-cell">ID Number</th>
-											<th class="d-none d-xl-table-cell">Course & Year Level</th>
-											<th>Completed Votes</th>
-											<th class="d-none d-xl-table-cell">Action</th>
+											<th>ID Number</th>
+											<th>Department</th>
+											<th>Course & Year Level</th>
+											<th>Date Voted</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										<?php
+
+										$sql = "SELECT * FROM votes 
+													INNER JOIN students ON students.id = votes.student_id
+													INNER JOIN course ON students.course = course.course_id
+													INNER JOIN department ON department.department_id = students.department
+													GROUP BY students.student_id;";
+										$stmt = $db->prepare($sql);
+										$stmt->execute();
+										$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+										foreach($row as $r):
+
+											$name = $r['first_name'] . ' ' . $r['middle_name']. ' '. $r['last_name'];
+											$course = preg_replace('/[^A-Z]/', '', $r['course_name']);
+											$year =  $course . ' ' .$r['year_level'];
+
+										?>
 										<tr>
 											<td>
-												<div class="d-flex">
-													<div class="flex-shrink-0">
-														<div class="bg-light rounded-2">
-															<!-- <img class="p-2" src="img/icons/brand-1.svg"> -->
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3">
-														<strong>Calvin Flores</strong>
-														<div class="text-muted">
-															CAS
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xxl-table-cell">
-												<strong>E21-00955</strong>
-												<div class="text-muted">
-													
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<strong>BSIT</strong>
-												<div class="text-muted">
-													4th Year
-												</div>
+												<?= $r['student_id']; ?>
 											</td>
 											<td>
-												<div class="d-flex flex-column w-100">
-													<span class="me-2 mb-1 text-muted">65%</span>
-													<div class="progress progress-sm bg-success-light w-100">
-														<div class="progress-bar bg-success" role="progressbar" style="width: 65%;"></div>
-													</div>
-												</div>
+												<?= $name; ?>
 											</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
+											<td>
+												<?= preg_replace('/[^A-Z]/', '',$r['department_name']) ?>
+											</td>
+											<td>
+												<?= $year; ?>
+											</td>
+											<td>
+											<?= date("F j, Y \a\\t h:i A", strtotime($r['voted_at'])); ?>
+											</td>
+											<td>
+												<button data-id="<?= $r['student_id']; ?>" class="btn btn-sm btn-outline-success view-votes"><i class="fa fa-eye"></i></button>
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<div class="d-flex">
-													<div class="flex-shrink-0">
-														<div class="bg-light rounded-2">
-															<!-- <img class="p-2" src="img/icons/brand-2.svg"> -->
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3">
-														<strong>Renald Lorenzana</strong>
-														<div class="text-muted">
-															CTE
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xxl-table-cell">
-												<strong>E20-22141</strong>
-												<div class="text-muted">
-													
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<strong>BSEMME</strong>
-												<div class="text-muted">
-													3rd Year
-												</div>
-											</td>
-											<td>
-												<div class="d-flex flex-column w-100">
-													<span class="me-2 mb-1 text-muted">33%</span>
-													<div class="progress progress-sm bg-danger-light w-100">
-														<div class="progress-bar bg-danger" role="progressbar" style="width: 33%;"></div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex">
-													<div class="flex-shrink-0">
-														<div class="bg-light rounded-2">
-															<!-- <img class="p-2" src="img/icons/brand-3.svg"> -->
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3">
-														<strong>Daniel Padilpat</strong>
-														<div class="text-muted">
-															CBME
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xxl-table-cell">
-												<strong>E20-66541</strong>
-												<div class="text-muted">
-													
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<strong>BSBA</strong>
-												<div class="text-muted">
-													2nd Year
-												</div>
-											</td>
-											<td>
-												<div class="d-flex flex-column w-100">
-													<span class="me-2 mb-1 text-muted">50%</span>
-													<div class="progress progress-sm bg-warning-light w-100">
-														<div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex">
-													<div class="flex-shrink-0">
-														<div class="bg-light rounded-2">
-															<!-- <img class="p-2" src="img/icons/brand-4.svg"> -->
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3">
-														<strong>Jannie Gads</strong>
-														<div class="text-muted">
-															CAS
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xxl-table-cell">
-												<strong>E22-55021</strong>
-												<div class="text-muted">
-													
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<strong>BAEL</strong>
-												<div class="text-muted">
-													1st Year
-												</div>
-											</td>
-											<td>
-												<div class="d-flex flex-column w-100">
-													<span class="me-2 mb-1 text-muted">80%</span>
-													<div class="progress progress-sm bg-success-light w-100">
-														<div class="progress-bar bg-success" role="progressbar" style="width: 80%;"></div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex">
-													<div class="flex-shrink-0">
-														<div class="bg-light rounded-2">
-															<!-- <img class="p-2" src="img/icons/brand-5.svg"> -->
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3">
-														<strong>Don Marvin</strong>
-														<div class="text-muted">
-															CAS
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xxl-table-cell">
-												<strong>E23-09971</strong>
-												<div class="text-muted">
-													
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<strong>BAP</strong>
-												<div class="text-muted">
-												4th Year
-												</div>
-											</td>
-											<td>
-												<div class="d-flex flex-column w-100">
-													<span class="me-2 mb-1 text-muted">78%</span>
-													<div class="progress progress-sm bg-primary-light w-100">
-														<div class="progress-bar bg-primary" role="progressbar" style="width: 78%;"></div>
-													</div>
-												</div>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
-											</td>
-										</tr>
+
+										<?php endforeach; ?>
+								
 									</tbody>
 								</table>
 							</div>
@@ -521,7 +363,37 @@ if (!$login->isLoggedIn()) {
 		</div>
 	</div>
 
+
+	<!-- Modal -->
+<div class="modal fade" id="view-votes-by-id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Votes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+			<table class="table">
+				<thead>
+					<th>Position</th>
+					<th>Candidate Name</th>
+					<th>Candidate Partylist</th>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>				
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 	<script src="js/app.js"></script>
+	<script src="js/index.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -596,8 +468,7 @@ if (!$login->isLoggedIn()) {
 				}
 			});
 		});
-	</script>
-	<script>
+
 		document.addEventListener("DOMContentLoaded", function() {
 			// Pie chart
 			new Chart(document.getElementById("chartjs-dashboard-pie"), {
