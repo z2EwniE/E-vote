@@ -91,8 +91,7 @@ include_once __DIR__ . "/../config/init.php";
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">College of Teaching and Education</h1><a class="badge bg-primary ms-2" 
-							target="_blank">Sanmig Blue<i class="fas fa-fw fa-external-link-alt"></i></a>
+						<h1 class="h3 d-inline align-middle">College of Teaching and Education</h1>
 					</div>
 
 					<div class="row">

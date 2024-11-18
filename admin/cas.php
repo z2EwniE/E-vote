@@ -94,8 +94,8 @@
                 
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">College of Arts and Science</h1><a class="badge bg-primary ms-2" 
-							target="_blank">Red Dragons<i class="fas fa-fw fa-external-link-alt"></i></a>
+						<h1 class="h3 d-inline align-middle">College of Arts and Science</h1>
+							
 					</div>
 
                     <div class="row">

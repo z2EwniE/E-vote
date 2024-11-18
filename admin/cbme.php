@@ -93,9 +93,8 @@ include_once __DIR__ . "/../config/init.php";
                 <div class="container-fluid p-0">
 
                     <div class="mb-3">
-                        <h1 class="h3 d-inline align-middle">College of Business Management and Entrepreneurship</h1><a
-                            class="badge bg-primary ms-2" target="_blank">Yellow Eagles<i
-                                class="fas fa-fw fa-external-link-alt"></i></a>
+                        <h1 class="h3 d-inline align-middle">College of Business Management and Entrepreneurship</h1>
+                        
                     </div>
 
                     <div class="row">
