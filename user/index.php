@@ -55,12 +55,12 @@ if (!isset($_SESSION['student_id'])) {
         <div class="main">
             <?php include_once 'includes/navbar.php'; ?>
 
-            <main class="content">
+            <main class="content">  
                 <section class="hero-section text-center mb-4" style="background-image: url('img/photos/ok.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                     <div class="hero-content">
                         <div class="hero-text">
-                            <h1 class="hero-title">Welcome to the E-Vote System</h1>
-                            <p class="hero-description">Your vote matters! Cast your vote securely and easily in just a few clicks.</p>
+                            <h1 class="hero-title">Welcome to the E-Vote Platforms!</h1>
+                            <p class="hero-description"> Use this platform to apply for candidacy in just a few clicks.</p>
                         </div>
                         <div class="hero-model">
                             <img src="img/icons/click-ezgif.com-gif-maker.gif" alt="3D Model Voting" class="model-animation">
@@ -69,61 +69,7 @@ if (!isset($_SESSION['student_id'])) {
                 </section>
 
 
-                <?php if(hasVoted()): ?>
-                <section class="vote-section mt-4">
-                    <div class="container-fluid p-0 mt-4">
-                        <h4 class="section-title mt-4">Vote for Your Candidates</h4>
-                        <div class="container">
-                            <div class="voting-section">
-                                <div id="positions-container">
-                                    <!-- Dynamic Positions and Candidates will be appended here -->
-                                </div>
-                            </div>
-
-                            <div class="text-center mt-4">
-                                <button type="button" class="btn submit-btn" id="submitVote">Submit Vote <i class="fas fa-check"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <?php else: ?>
-
-                    <section class="vote-section mt-4">
-                    <div class="container-fluid p-0 mt-4" id="vote-section">
-                    <table class="table">
-                        <thead>
-                            <th>Position</th>
-                            <th>Candidate Name</th>
-                            <th>Candidate Partylist</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                    </div>
-                    </section>
-
-                    <?php endif; ?>
-
-                <!-- Confirmation Modal -->
-                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="confirmationModalLabel">Confirm Your Vote</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body" id="modalBody">
-                                <div id="selectedCandidatesContainer"></div> <!-- Selected candidates will be displayed here -->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Go Back</button>
-                                <button type="button" class="btn btn-primary" id="confirmVote">Confirm Vote</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
             </main>
 
             <footer class="footer">
@@ -140,6 +86,7 @@ if (!isset($_SESSION['student_id'])) {
 
     <script src="js/app.js"></script>
 
+     <!--
     <script>
 
 $(document).ready(function() {
@@ -350,6 +297,6 @@ $(document).ready(function() {
         });
     });
 </script>
-
+-->
 </body>
 </html>
