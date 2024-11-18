@@ -295,8 +295,8 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                 <table class="table table-borderless my-0">
                                     <thead>
                                         <tr>
+                                            <th>Student ID</th>
                                             <th>Student Name</th>
-                                            <th>ID Number</th>
                                             <th>Department</th>
                                             <th>Course & Year Level</th>
                                             <th>Date Voted</th>

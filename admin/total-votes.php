@@ -72,6 +72,8 @@
         #chartsContainer {
             width: 100%;
         }
+
+    
     </style>
 </head>
 
@@ -86,8 +88,8 @@
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header bg-success text-black">
                         <div class="d-flex float-end w-25 m-2">
                         <select type="text" id="course" name="course" class="form-control" required>
                     <option value="">Select Course</option> 
