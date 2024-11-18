@@ -3,7 +3,7 @@
         <a class='sidebar-brand' href='/'>
 					<span class="sidebar-brand-text align-middle">
 						E-vote System
-						<sup><small class="badge bg-primary text-uppercase">ISPSC</small></sup>
+						<sup><small class="badge bg-success text-uppercase">ISPSC</small></sup>
 					</span>
             <svg class="sidebar-brand-icon align-middle" width="32px" height="32px" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"
                  stroke-linecap="square" stroke-linejoin="miter" color="#FFFFFF" style="margin-left: -3px">

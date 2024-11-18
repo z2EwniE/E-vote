@@ -361,22 +361,13 @@ $vote_count_labels = array_column($votes, 'vote_count');
                     <div class="row text-muted">
                         <div class="col-6 text-start">
                             <p class="mb-0">
-                                <a target="_blank" class="text-muted"><strong>eVote System</strong></a> &copy;
+                            <a target="_blank" class="text-muted"><strong>eVote System</strong></a> &copy;
                             </p>
                         </div>
                         <div class="col-6 text-end">
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Support</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Help Center</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Privacy</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Terms</a>
+                                <a class="text-muted" href="#">ISPSC - Tagudin Campus</a>
                                 </li>
                             </ul>
                         </div>
@@ -523,7 +514,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                 datasets: [{
                     data: <?= json_encode($vote_count_labels); ?>,
                     backgroundColor: [
-                        window.theme.warning,
+                        window.theme.danger,
                         window.theme.primary,
                         window.theme.success,
                         "#E8EAED"
