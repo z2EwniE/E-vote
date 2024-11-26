@@ -10,12 +10,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
+            <?php if(isCandidate()): ?>
             <li class="nav-item">
                 <a class="nav-link" href="platforms.php">Platforms</a>
             </li>
+            <?php else: ?>
             <li class="nav-item">
                 <a class="nav-link" href="apply-candidacy.php">Apply for Candidacy</a>
             </li>
+            <?php endif; ?>
             <li class="nav-item dropdown">
     <?php if (isset($_SESSION['student_id'])): ?>
         <a class="nav-link dropdown-toggle text-muted" href="#" id="studentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

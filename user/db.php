@@ -15,4 +15,30 @@
         echo "Connection failed: " . $e->getMessage();
         exit();
     }
+
+
+    function isCandidate()
+    {
+        global $conn;
+
+        $candidateId = $_SESSION['id'];
+    
+        // SQL query to check if the candidate exists
+        $sql = "SELECT * FROM candidates WHERE student_id = :candidateId";
+    
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':candidateId', $candidateId, PDO::PARAM_INT);
+            $stmt->execute();
+                if ($stmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false; 
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    
     ?>
