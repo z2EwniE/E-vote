@@ -4,27 +4,6 @@ include_once __DIR__ . '/db.php';
 
 session_start();
 
-
-function hasVoted(){
-    include_once __DIR__ . '/db.php';
-
-
-    $student_id = $_SESSION['id'];
-
-    $sql = "SELECT COUNT(*) AS vote_count FROM votes WHERE student_id = :student_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $hasVoted = $result['vote_count'] == 0;
-
-    return $hasVoted;
-
-}
-
-
-
 // Redirect to login page if not logged in
 if (!isset($_SESSION['student_id'])) {
     header('Location: login.php'); 
@@ -49,8 +28,61 @@ if (!isset($_SESSION['student_id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="css/light.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script>
-    </script>
+    <style>
+    .voting-container {
+        width: 80%;
+        margin: 20px auto;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    .voted-item {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .vote-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .position-name {
+        color: #4CAF50;
+    }
+
+    .partylist-name {
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: normal;
+    }
+
+    .candidate-details p {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .candidate-details strong {
+        color: #333;
+    }
+
+    .voted-item:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .voting-container p {
+        font-size: 18px;
+        text-align: center;
+        color: #333;
+    }
+</style>
 </head>
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
@@ -58,12 +90,12 @@ if (!isset($_SESSION['student_id'])) {
         <div class="main">
             <?php include_once 'includes/navbar.php'; ?>
 
-            <main class="content">  
+            <main class="content">
                 <section class="hero-section text-center mb-4" style="background-image: url('img/photos/ok.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                     <div class="hero-content">
                         <div class="hero-text">
-                            <h1 class="hero-title">Welcome to the E-Vote Platforms!</h1>
-                            <p class="hero-description"> Use this platform to apply for candidacy in just a few clicks.</p>
+                            <h1 class="hero-title">Welcome to the E-Vote System</h1>
+                            <p class="hero-description">Your vote matters! Cast your vote securely and easily in just a few clicks.</p>
                         </div>
                         <div class="hero-model">
                             <img src="img/icons/click-ezgif.com-gif-maker.gif" alt="3D Model Voting" class="model-animation">
@@ -71,8 +103,106 @@ if (!isset($_SESSION['student_id'])) {
                     </div>
                 </section>
 
+                <section class="vote-section mt-4">
+                    <div class="container-fluid p-0 mt-4">
 
-                
+                    <?php
+                            if(hasVoted()):
+                        ?>
+                        <h4 class="section-title mt-4">Vote for Your Candidates</h4>
+                        <div class="container">
+                            <div class="voting-section">
+                                <div id="positions-container">
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="button" class="btn submit-btn" id="submitVote">Submit Vote <i class="fas fa-check"></i></button>
+                            </div>
+                        </div>
+                        <?php else: ?>
+
+                            <?php
+$id = $_SESSION['id'];
+
+$sql = "SELECT 
+            positions.position_id,
+            positions.position_name,
+            partylists.partylist_name,
+            CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name,
+            votes.voted_at,
+            candidates.platform,
+            department.department_name,
+            candidates.candidate_id
+        FROM 
+            votes
+        INNER JOIN 
+            candidates ON candidates.candidate_id = votes.candidate_id
+        INNER JOIN 
+            students ON students.id = candidates.student_id
+        INNER JOIN 
+            course ON students.course = course.course_id
+        INNER JOIN 
+            department ON department.department_id = students.department
+        INNER JOIN 
+            positions ON positions.position_id = votes.position_id
+        LEFT JOIN 
+            partylists ON partylists.partylist_id = candidates.partylist_id
+        WHERE 
+            votes.student_id = :s 
+        ORDER BY 
+            votes.voted_at";
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':s', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if ($row) {
+    foreach ($row as $res):
+        // Display the vote information here
+        ?>
+        <div class="voted-item">
+            <p><strong>Position:</strong> <?php echo htmlspecialchars($res['position_name']); ?></p>
+            <p><strong>Candidate:</strong> <?php echo htmlspecialchars($res['candidate_name']); ?></p>
+            <?php if ($res['partylist_name']) { ?>
+                <p><strong>Partylist:</strong> <?php echo htmlspecialchars($res['partylist_name']); ?></p>
+            <?php } ?>
+            <p><strong>Platform:</strong> <?php echo htmlspecialchars($res['platform']); ?></p>
+            <p><strong>Department:</strong> <?php echo htmlspecialchars($res['department_name']); ?></p>
+            <p><strong>Voted At:</strong> <?php echo htmlspecialchars($res['voted_at']); ?></p>
+            <hr>
+        </div>
+        <?php
+    endforeach;
+} else {
+    echo "<p>No voting record found.</p>";
+}
+endif;
+?>
+
+                    </div>
+                </section>
+
+                <!-- Confirmation Modal -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmationModalLabel">Confirm Your Vote</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalBody">
+                                <div id="selectedCandidatesContainer"></div> <!-- Selected candidates will be displayed here -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Go Back</button>
+                                <button type="button" class="btn btn-primary" id="confirmVote">Confirm Vote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
 
             <footer class="footer">
@@ -89,46 +219,7 @@ if (!isset($_SESSION['student_id'])) {
 
     <script src="js/app.js"></script>
 
-     <!--
     <script>
-
-$(document).ready(function() {
-
-    let student_id = "<?php echo $_SESSION['student_id']; ?>";
-
-
-    $.ajax({
-        type: 'POST',
-        url: '../admin/process/view-votes-by-id.php',
-        data: {
-            action: 1,
-            student_id: student_id
-        },
-        success: function(res) {
-            var res = JSON.parse(res);
-
-            if (res.success) {
-                // Clear the previous table content
-                $('#vote-section .table tbody').empty();
-
-                // Loop through each voting record and add to the table
-                res.data.forEach(function(vote) {
-                    let row = `
-                        <tr>
-                            <td>${vote.position_name}</td>
-                            <td>${vote.candidate_name}</td>
-                            <td>${vote.partylist_name}</td>
-                            
-                        </tr>
-                    `;
-                    $('#vote-section .table tbody').append(row);
-                });
-
-            }
-        }
-    });
-});
-
     const selectedCandidates = {};
 
     function selectCard(positionName, candidateId) {
@@ -300,6 +391,6 @@ $(document).ready(function() {
         });
     });
 </script>
--->
+
 </body>
 </html>

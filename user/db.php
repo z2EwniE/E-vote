@@ -1,5 +1,6 @@
     <?php
    
+   error_reporting(E_ALL);
    $host = '139.99.97.250'; 
     $dbname = 'evote'; 
     $username = 'evote';   
@@ -41,4 +42,24 @@
         }
     }
     
-    ?>
+
+
+    function hasVoted()
+    {
+
+        global $conn;
+    
+        $student_id = $_SESSION['id'];
+    
+        $sql = "SELECT COUNT(*) AS vote_count FROM votes WHERE student_id = :student_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $hasVoted = $result['vote_count'] == 0;
+    
+        return $hasVoted;
+    
+    }
+    
