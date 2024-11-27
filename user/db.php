@@ -41,6 +41,48 @@
             return false;
         }
     }
+
+    function fetchStudent($id)
+    {
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+
+    function hasStudentApplied() {
+        try {
+            global $conn;
+
+            $student_id = $_SESSION['id'];
+
+            $stmt = $conn->prepare("
+                SELECT COUNT(*) 
+                FROM candidates 
+                WHERE student_id = :student_id
+            ");
+            
+            // Execute the query with parameters
+            $stmt->execute([
+                ':student_id' => $student_id
+            ]);
+    
+            // Fetch the count
+            $count = $stmt->fetchColumn();
+    
+            // Return true if count is greater than 0 (student has applied), false otherwise
+            return $count > 0;
+        } catch (PDOException $e) {
+            // Log the error and return false as a fallback
+            error_log("Error checking if student applied: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     
 
 

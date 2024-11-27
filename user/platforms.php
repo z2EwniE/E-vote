@@ -10,6 +10,25 @@ if (!isset($_SESSION['student_id'])) {
     exit();
 }
 
+$sql = "SELECT 
+            p.platform_id, 
+            p.platform_title, 
+            p.platform_content, 
+            p.platform_image, 
+            p.date_posted, 
+            CONCAT(s.first_name, ' ', s.middle_name, ' ', s.last_name) AS candidate_name,
+            d.department_name
+        FROM platforms p
+        INNER JOIN candidates c ON c.candidate_id = p.candidate_id
+        INNER JOIN students s ON s.id = c.student_id
+        INNER JOIN department d ON d.department_id = s.department";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +49,8 @@ if (!isset($_SESSION['student_id'])) {
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/s1zhsk9a77bb6jujpqu2nhrpnr7b1t7hxzjuawrdlj68aps4/tinymce/7/tinymce.min.js"
     referrerpolicy="origin"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
+
     <script>
     </script>
 </head>
@@ -42,6 +63,8 @@ if (!isset($_SESSION['student_id'])) {
             <main class="content">
                 <div class="container">
                     <h2 class="mb-4">Candidate Platforms</h2>
+
+                    <?php if(isCandidate()): ?>
 
                     <div class="card mb-5">
                         <div class="card-body">
@@ -60,25 +83,35 @@ if (!isset($_SESSION['student_id'])) {
                             </form>
                         </div>
                     </div>
+                    <?php endif; ?>
 
-                    <div class="post-list">
-                        <div class="card mb-3">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/candidates/profile1.jpg" alt="Candidate Image"
-                                        class="rounded-circle me-3" width="50" height="50">
-                                    <div>
-                                        <h5 class="mb-0">Platform Title</h5>
-                                        <small>by Candidate Name (Partylist Name)</small>
+                    <div class="row post-list">
+                    <div class="col-md-12">
+                    <section class="platforms-section mt-4">
+                        <div class="container">
+                            <h4 class="section-title">Candidate Platforms</h4>
+                            <div class="row">
+                                <?php if ($platforms): ?>
+                                <?php foreach ($platforms as $platform): ?>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card platform-card" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                                        <img src="<?php echo htmlspecialchars($platform['platform_image'] ?: 'https://via.placeholder.com/300'); ?>" class="card-img-top" alt="Platform Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo htmlspecialchars($platform['platform_title']); ?></h5>
+                                            <p class="card-text"><?php echo (substr($platform['platform_content'], 0, 100)) . '...'; ?></p>
+                                            <p class="text-muted"><small>By <?php echo htmlspecialchars($platform['candidate_name']); ?>, <?php echo htmlspecialchars($platform['department_name']); ?></small></p>
+                                            <p class="text-muted"><small>Posted on: <?php echo date('F j, Y', strtotime($platform['date_posted'])); ?></small></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <small class="text-muted">Posted on 2023-01-01</small>
-                            </div>
-                            <div class="card-body">
-                                <p>This is an example of a platform post content where the candidate describes their
-                                    platform in detail...</p>
+                                <?php endforeach; ?>
+                                <?php else: ?>
+                                <p>No platforms available.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
+                    </section>
+                </div>
                     </div>
                 </div>
 
@@ -97,6 +130,8 @@ if (!isset($_SESSION['student_id'])) {
 
     <script src="js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.js"></script>
     <script>
     tinymce.init({
         selector: 'textarea',
@@ -155,10 +190,37 @@ if (!isset($_SESSION['student_id'])) {
                     let platform_content = tinymce.get('platform_content').getContent();
                 $.ajax({
                     type: "POST",
-                    url: ""
-                })
-
-            });
+                    url: "actions/add_platform.php",
+                    data: {
+                action: 'add_platform',
+                platform_title: platform_title,
+                platform_content: platform_content
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = 'index.php'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                        confirmButtonText: 'Try Again'
+                    });
+                }
+            },
+            error: function() {
+                $('#responseMessage').html('<p style="color: red;">An error occurred while processing the request.</p>');
+            }
+        });
+    });
         });
     </script>
 
