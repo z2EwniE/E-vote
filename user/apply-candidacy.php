@@ -10,8 +10,91 @@ include_once __DIR__ . '/db.php';
 if (!isset($_SESSION['student_id'])) {
     header('Location: login.php'); 
     exit();
+} else {
+    $id = $_SESSION['student_id'];
 }
 
+
+$student = fetchStudent($id);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $student_id = $_SESSION['id'];
+    $department = trim($_POST['department']);
+    $position_id = $_POST['position'];
+    $partylist_id = $_POST['partylist'];
+    
+    // Validate inputs
+    if (empty($department) || empty($position_id) || empty($partylist_id)) {
+        echo "All fields are required.";
+        exit();
+    }
+
+    // Handle file upload
+    $target_dir = "uploads/profile_photos/";
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    $file_name = basename($_FILES["profile_photo"]["name"]);
+    $target_file = $target_dir . uniqid() . "_" . $file_name;
+    $upload_ok = true;
+
+    // Check file size (limit: 2MB)
+    if ($_FILES["profile_photo"]["size"] > 10 * 1024 * 1024) {
+        echo "File size exceeds 2MB.";
+        $upload_ok = false;
+    }
+
+    // Allow certain file formats
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if (!in_array($file_type, ['jpg', 'jpeg', 'png', 'gif'])) {
+        echo "Only JPG, JPEG, PNG, and GIF files are allowed.";
+        $upload_ok = false;
+    }
+
+    // Upload file
+    if ($upload_ok && move_uploaded_file($_FILES["profile_photo"]["tmp_name"], $target_file)) {
+        try {
+            // Prepare the SQL query for inserting a new candidate record
+            $stmt = $conn->prepare("
+                INSERT INTO candidates (
+                    student_id, 
+                    department, 
+                    candidate_position, 
+                    partylist_id, 
+                    candidate_image_path
+                ) VALUES (
+                    :student_id, 
+                    :department, 
+                    :position_id, 
+                    :partylist_id, 
+                    :profile_photo
+                )
+            ");
+        
+         
+            // Execute the query with parameter bindings
+            $stmt->execute([
+                ':student_id' => $student_id,
+                ':department' => $department,
+                ':position_id' => $position_id,
+                ':partylist_id' => $partylist_id,
+                ':profile_photo' => $target_file,
+            ]);
+        
+            // Redirect to a confirmation page or reload the form
+            header('Location: apply-candidacy.php?success=1'); // Optionally append success query parameter
+            exit();
+        } catch (PDOException $e) {
+            // Log the error message and display a user-friendly error
+            echo ("Database Error: " . $e->getMessage()); // Log the error for debugging
+        }        
+    } else {
+        echo "Error uploading the file.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,19 +126,26 @@ if (!isset($_SESSION['student_id'])) {
                 <div class="container">
                     <h2 class="mb-4">Apply for Candidacy</h2>
 
+                    <?php if(isset($_GET['success'])): ?>
+
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Holy guacamole!</strong> Application for Candidacy Success!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
+
                     <form action="apply-candidacy.php" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="full_name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="full_name" name="full_name" required>
-                        </div>
+                        <input type="hidden" name="department" id="department" value="<?= $student['department'] ?>">
+                        <?php
+                        include_once __DIR__ . '/db.php'; 
 
-                                <?php
-                        include_once __DIR__ . '/db.php'; // Include your database connection file
-
-                        // Fetch all positions from the database
                         $stmt = $conn->prepare("SELECT * FROM `positions`");
                         $stmt->execute();
                         $positions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        $stmt = $conn->prepare("SELECT * FROM `partylists`");
+                        $stmt->execute();
+                        $partylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         ?>
 
                         <!-- Dropdown form field for selecting a position -->
@@ -64,22 +154,22 @@ if (!isset($_SESSION['student_id'])) {
                             <select class="form-select" id="position" name="position" required>
                                 <option value="">Select Position</option>
                                 <?php foreach ($positions as $position): ?>
-                                    <option value="<?php echo $position['position_id']; ?>"><?php echo htmlspecialchars($position['position_name']); ?></option>
+                                <option value="<?php echo $position['position_id']; ?>">
+                                    <?php echo htmlspecialchars($position['position_name']); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
 
                         <div class="mb-3">
-                            <label for="partylist" class="form-label">Partylist (Optional)</label>
-                            <input type="text" class="form-control" id="partylist" name="partylist"
-                                placeholder="Enter party name if applicable">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="manifesto" class="form-label">Manifesto</label>
-                            <textarea class="form-control" id="manifesto" name="manifesto" rows="4" required
-                                placeholder="Explain why you are a good candidate for this position"></textarea>
+                            <label for="partylist" class="form-label">Partylist</label>
+                            <select class="form-select" id="partylist" name="partylist" required>
+                                <option value="">Select Position</option>
+                                <?php foreach ($partylists as $partylist): ?>
+                                <option value="<?php echo $partylist['partylist_id']; ?>">
+                                    <?php echo htmlspecialchars($partylist['partylist_name']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="mb-3">
