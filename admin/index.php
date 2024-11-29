@@ -12,7 +12,7 @@ if (!$login->isLoggedIn()) {
 
 function countVotesByDepartment() {
 	global $db;
-	$stmt = $db->prepare("SELECT  department.department_name, COUNT(*) AS vote_count FROM votes INNER JOIN students ON students.id = votes.student_id INNER JOIN department ON department.department_id = students.department WHERE department.department_id GROUP BY department.department_id");
+	$stmt = $db->prepare("SELECT  department.department_name, COUNT(*) AS vote_count FROM votes INNER JOIN students ON students.id = votes.student_id RIGHT JOIN department ON department.department_id = students.department WHERE department.department_id GROUP BY department.department_id");
 	$stmt->execute();
 	$row =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$data = [];
