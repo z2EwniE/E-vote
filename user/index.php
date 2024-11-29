@@ -44,6 +44,7 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="img/icons/professional-icon.png" />
     <title>E-Vote System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link href="css/light.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
@@ -254,6 +255,13 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="vote-section mt-4">
         <div class="container-fluid p-4 mt-4" style="background: #f8f9fa; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <?php if(isset($_GET['success'])): ?>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> Application for Candidacy Success!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
             <?php if(hasVoted()): ?>
             <h4 class="section-title mt-4">Vote for Your Candidates</h4>
             <div class="row">
@@ -271,7 +279,7 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
             <?php
                 $id = $_SESSION['id'];
-                $sql = "SELECT positions.position_id, positions.position_name, partylists.partylist_name, CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name, votes.voted_at, candidates.platform, department.department_name, candidates.candidate_id FROM votes INNER JOIN candidates ON candidates.candidate_id = votes.candidate_id INNER JOIN students ON students.id = candidates.student_id INNER JOIN course ON students.course = course.course_id INNER JOIN department ON department.department_id = students.department INNER JOIN positions ON positions.position_id = votes.position_id LEFT JOIN partylists ON partylists.partylist_id = candidates.partylist_id WHERE votes.student_id = :s ORDER BY votes.voted_at";
+                $sql = "SELECT positions.position_id, positions.position_name, partylists.partylist_name, CONCAT(students.first_name, ' ', students.middle_name, ' ', students.last_name) AS candidate_name, votes.voted_at, department.department_name, candidates.candidate_id FROM votes INNER JOIN candidates ON candidates.candidate_id = votes.candidate_id INNER JOIN students ON students.id = candidates.student_id INNER JOIN course ON students.course = course.course_id INNER JOIN department ON department.department_id = students.department INNER JOIN positions ON positions.position_id = votes.position_id LEFT JOIN partylists ON partylists.partylist_id = candidates.partylist_id WHERE votes.student_id = :s ORDER BY votes.voted_at";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':s', $id, PDO::PARAM_INT);
                 $stmt->execute();
@@ -285,7 +293,6 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($res['partylist_name']) { ?>
                 <p><strong>Partylist:</strong> <?php echo htmlspecialchars($res['partylist_name']); ?></p>
                 <?php } ?>
-                <p><strong>Platform:</strong> <?php echo htmlspecialchars($res['platform']); ?></p>
                 <p><strong>Department:</strong> <?php echo htmlspecialchars($res['department_name']); ?></p>
                 <p><strong>Voted At:</strong> <?php echo htmlspecialchars($res['voted_at']); ?></p>
                 <hr>

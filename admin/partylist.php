@@ -139,6 +139,7 @@
                                                             <i class="fas fa-sort"></i>
                                                         </th>
                                                         <th>Partylist </th>
+                                                        <th>Department </th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -149,7 +150,7 @@
                                     // Assuming $db is a valid PDO instance from init.php
                                     $stmt = $db->prepare("SELECT partylist_id AS No, 
                                                                         partylist_name AS Partylist, 
-                                                                        department FROM partylists");
+                                                                        department.department_name FROM partylists INNER JOIN department ON department.department_id = partylists.department");
 
                                     $stmt->execute();
                                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,6 +160,7 @@
                                             echo "<tr>";
                                             echo "<td>" . $row['No'] . "</td>";
                                             echo "<td>" . $row['Partylist'] . "</td>";
+                                            echo "<td>" . $row['department_name'] . "</td>";
                                             echo "<td>
                                                     <div class='btn-group'>
                                                         <button class='btn btn-primary delete_partylist' data-id='". $row['No'] ."' data-bs-toggle='modal' data-bs-target='#editPartylistModal'><i class='fa fa-edit '></i></button>

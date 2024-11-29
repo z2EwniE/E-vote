@@ -14,6 +14,11 @@ if (!isset($_SESSION['student_id'])) {
     $id = $_SESSION['student_id'];
 }
 
+if(isCandidate()) {
+    header('Location: index.php'); 
+    exit();
+}
+
 
 $student = fetchStudent($id);
 
@@ -85,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         
             // Redirect to a confirmation page or reload the form
-            header('Location: apply-candidacy.php?success=1'); // Optionally append success query parameter
+            header('Location: index.php?success=1'); // Optionally append success query parameter
             exit();
         } catch (PDOException $e) {
             // Log the error message and display a user-friendly error
@@ -126,13 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container">
                     <h2 class="mb-4">Apply for Candidacy</h2>
 
-                    <?php if(isset($_GET['success'])): ?>
-
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Holy guacamole!</strong> Application for Candidacy Success!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        <?php endif; ?>
+                  
 
                     <form action="apply-candidacy.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="department" id="department" value="<?= $student['department'] ?>">
