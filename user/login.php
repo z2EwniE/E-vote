@@ -92,7 +92,7 @@
         // Set up the AJAX request to scan and autofill student_id
         function scanBarcode() {
             // Make the AJAX request to scan the barcode
-            fetch('http://192.168.0.109/:5000/scan')
+            fetch('http://192.168.0.109:5000/scan')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
