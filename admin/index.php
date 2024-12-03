@@ -199,14 +199,10 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Total Votes</h5>
@@ -244,42 +240,18 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                     </div>
                                 </div>
                             </div>
-                        </div>```php
-function countVotesByDepartment() {
-    global $db;
-    $stmt = $db->prepare("SELECT 
-        department.department_name, 
-        COUNT(votes.student_id) AS vote_count 
-    FROM votes 
-    INNER JOIN students ON students.id = votes.student_id 
-    INNER JOIN department ON department.department_id = students.department 
-    GROUP BY department.department_id");
-    $stmt->execute();
-    $row =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $data = [];
-    foreach($row as $r) {
-        $data[] = [
-            "department" => preg_replace('/[^A-Z]/', '', $r['department_name']),
-            "vote_count" => $r['vote_count']
-        ];
-    }
-    return $data;
-}
-```
+                        </div>
+                        
                         <div class="col-6 col-lg-6 col-xxl-6 d-flex">
                             <div class="card flex-fill w-100">
                                 <div class="card-header">
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                      
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Monthly Registered Students</h5>
@@ -301,14 +273,10 @@ function countVotesByDepartment() {
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Vote Logs</h5>

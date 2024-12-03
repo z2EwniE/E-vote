@@ -74,7 +74,7 @@ if ($login->isRememberSet()) {
             <div class="col-12 col-md-6 col-xl-7">
                 <div class="d-flex justify-content-center" style="background-color: #1A1A1A; color: #FE8040;">
                 <div class="col-12 col-xl-9">
-                <img class="img-fluid rounded mb-4" loading="lazy" src="./assets/images/logo/E-vote.jpg" width="245" height="80" alt="BootstrapBrain Logo">
+               
                 <hr class="border-primary-subtle mb-4">
                 <h2 class="h1 mb-4">Welcome to eVote!</h2>
                     <p class="lead mb-5">Zero cost for student who are unable to buy an data inside the campus.</p>
@@ -160,9 +160,10 @@ if ($login->isRememberSet()) {
                 </div>
               </div>
             </form>
+                         
                             <div class="mt-4 text-center">
                             <?php if (!$login->isRememberSet()): ?>
-                                Don't have an account? <a href="register.php">Create One</a>
+                               <!-- Don't have an account? <a href="register.php">Create One</a> -->
                                 <?php else: ?>
                                     Not your account? <a href="login.php?ref_">Log in</a>
                                 <?php endif; ?>
