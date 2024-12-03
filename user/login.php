@@ -1,58 +1,3 @@
-<?php
-// Include database connection
-include 'connect.php';
-
-// Start the session
-session_start();
-
-$message = ""; // Variable to hold messages
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $student_id = $_POST['student_id'];
-
-    // Validate student ID format
-    if (!preg_match("/^[A-Za-z0-9\-]+$/", $student_id)) {
-        $message = "Invalid Student ID format! Please use alphanumeric characters and dashes.";
-    } else {
-        // Check if the student_id exists in the database
-        $sql = "SELECT * FROM students WHERE student_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $student_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            // Fetch user data
-            $student = $result->fetch_assoc();
-            
-            // Check if the student has already voted
-            $student_db_id = $student['id']; // Assuming 'id' is the primary key in students table
-            $sql_votes = "SELECT * FROM votes WHERE student_id = ?";
-            $stmt_votes = $conn->prepare($sql_votes);
-            $stmt_votes->bind_param("i", $student_db_id);
-            $stmt_votes->execute();
-            $result_votes = $stmt_votes->get_result();
-
-                $_SESSION['id'] = $student['id'];
-                $_SESSION['student_id'] = $student['student_id'];
-                $_SESSION['first_name'] = $student['first_name'];
-                $_SESSION['last_name'] = $student['last_name'];
-
-                header('Location: index.php'); // Redirect to voting page
-                exit();
-            
-        } else {
-            $message = "Invalid Student ID!";
-        }
-
-        // $stmt->close();
-        // $stmt_votes->close();
-        // $conn->close();
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,6 +81,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Function to handle the barcode scan
+        function handleBarcodeScan(barcode) {
+            // Fill the student_id field with the scanned barcode
+            document.getElementById('student_id').value = barcode;
+        }
+
+        // Set up the AJAX request to scan and autofill student_id
+        function scanBarcode() {
+            // Make the AJAX request to scan the barcode
+            fetch('http://localhost:5000/scan')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        handleBarcodeScan(data.barcode); // Autofill the student_id field
+                    } else {
+                        console.log("No barcode scanned");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error scanning barcode:', error);
+                });
+        }
+
+        // Trigger barcode scan on page load (you can adjust this based on your actual scanning method)
+        window.onload = function() {
+            scanBarcode();
+        }
+    </script>
 </body>
 
 </html>
