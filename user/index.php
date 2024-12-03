@@ -341,19 +341,27 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="js/app.js"></script>
 
     <script>
-    const selectedCandidates = {};
+  const selectedCandidates = {};
 
-    function selectCard(positionName, candidateId) {
-        const normalizedPositionName = positionName.replace(/\s+/g, '_');
+function selectCard(positionName, candidateId) {
+    const normalizedPositionName = positionName.replace(/\s+/g, '_');
 
+   
+    if (selectedCandidates[normalizedPositionName] === candidateId) {
+       
+        $(`#${normalizedPositionName}-candidate${candidateId}`).removeClass('selected');
+        delete selectedCandidates[normalizedPositionName]; // Remove from the selected candidates
+    } else {
+       
         if (selectedCandidates[normalizedPositionName]) {
-            $(`#${normalizedPositionName}-candidate${selectedCandidates[normalizedPositionName]}`).removeClass(
-                'selected');
+            $(`#${normalizedPositionName}-candidate${selectedCandidates[normalizedPositionName]}`).removeClass('selected');
         }
 
+     
         $(`#${normalizedPositionName}-candidate${candidateId}`).addClass('selected');
         selectedCandidates[normalizedPositionName] = candidateId;
     }
+}
 
     // Fetch voting data when the page loads
     $(document).ready(function() {
