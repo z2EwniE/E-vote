@@ -395,7 +395,7 @@ function selectCard(positionName, candidateId) {
                                      data-position-id="${position.position_id}" 
                                       data-partylist-id="${candidate.partylist_id || 'None'}" 
                                      id="${normalizedPositionName}-candidate${candidate.candidate_id}">
-                                    <img src="${candidate.image_path}" alt="${candidate.name || 'Candidate Image'}" 
+                                    <img src="${candidate.candidate_image_path}" alt="${candidate.name || 'Candidate Image'}" 
                                     onerror="this.src='https://via.placeholder.com/90';">
 
                                     <div class="card-body">
