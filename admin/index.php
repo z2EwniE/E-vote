@@ -229,7 +229,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
 													} elseif ($row['department'] === 'CTE') {
 														$colorClass = 'text-primary'; // Blue for CTE
 													} elseif ($row['department'] === 'CBME') {
-														$colorClass = 'text-success'; // Green for CBME
+														$colorClass = 'text-warning'; // Yellow for CBME
 													}
 												?>
                                                 <tr>
@@ -244,7 +244,28 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>```php
+function countVotesByDepartment() {
+    global $db;
+    $stmt = $db->prepare("SELECT 
+        department.department_name, 
+        COUNT(votes.student_id) AS vote_count 
+    FROM votes 
+    INNER JOIN students ON students.id = votes.student_id 
+    INNER JOIN department ON department.department_id = students.department 
+    GROUP BY department.department_id");
+    $stmt->execute();
+    $row =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $data = [];
+    foreach($row as $r) {
+        $data[] = [
+            "department" => preg_replace('/[^A-Z]/', '', $r['department_name']),
+            "vote_count" => $r['vote_count']
+        ];
+    }
+    return $data;
+}
+```
                         <div class="col-6 col-lg-6 col-xxl-6 d-flex">
                             <div class="card flex-fill w-100">
                                 <div class="card-header">
@@ -516,7 +537,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                     backgroundColor: [
                         window.theme.danger,
                         window.theme.primary,
-                        window.theme.success,
+                        window.theme.warning,
                         "#E8EAED"
                     ],
                     borderWidth: 5,
