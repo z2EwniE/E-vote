@@ -49,9 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - E-Vote System</title>
+    <link rel="stylesheet" href="svg/login-styles.css">
+    <link rel="stylesheet" href="css/register.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- jQuery CDN -->
@@ -194,34 +197,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-<div class="main-container">
-        <div class="left-section">
-            <div class="left-content">
-                <img src="svg/login-not-css.svg" alt="Login illustration">
-                <h1>Welcome Back!</h1>
-                <p>Login to access your voting dashboard and make your voice heard.</p>
-        <div class="spinner-overlay" id="spinner">
+    <div class="main-container">
+            <div class="left-section">
+                <div class="left-content">
+                    <img src="svg/login-not-css.svg" alt="Login illustration">
+                    <h1>Welcome Back!</h1>
+                    <p>Login to access your voting dashboard and make your voice heard.</p>
+                    <div class="features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span>Quick login with barcode</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span>Secure and confidential</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <h2>Login to E-Vote</h2>
+                <div class="scanner-info">
+                    <div class="scanner-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                            <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                            <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                            <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                            <rect x="7" y="7" width="10" height="10"></rect>
+                        </svg>
+                    </div>
+                    <div class="scanner-text">
+                        <h3>Quick Login Available</h3>
+                        <p>Simply tap your ID card on the scanner to login instantly</p>
+                    </div>
+                </div>
+
+                <?php if ($message): ?>
+                <div class="alert alert-warning">
+                    <?php echo $message; ?>
+                </div>
+                <?php endif; ?>
+                
+                <form method="POST" action="">
+                    <div class="input-group">
+                        <label for="student_id">Student ID</label>
+                        <div class="input-with-icon">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                                <line x1="7" y1="8" x2="17" y2="8"/>
+                                <line x1="7" y1="12" x2="17" y2="12"/>
+                                <line x1="7" y1="16" x2="12" y2="16"/>
+                            </svg>
+                            <input type="text" id="student_id" name="student_id" placeholder="Enter your Student ID" required>
+                        </div>
+                    </div>
+                    <button type="submit">
+                        <span>Login</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                            <polyline points="10 17 15 12 10 7"/>
+                            <line x1="15" y1="12" x2="3" y2="12"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="register-prompt">
+                    <p>Don't have an account? <a href="register.php">Register here</a></p>
+                </div>
+            </div>
+        </div>
+
+                <div class="spinner-overlay" id="spinner">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <div class="features">
-                    <div class="feature-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                        <span>Quick login with barcode</span>
-                    </div>
-                    <div class="feature-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        <span>Secure and confidential</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- PHP Message Handling -->
         <?php if (isset($message) && !empty($message)): ?>
             <div id="message" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -230,65 +287,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         <?php endif; ?>
         <!-- Login Form -->
-        <form id="loginForm" method="POST" action="login.php">
-            <div class="mb-3">
-                <label for="student_id" class="form-label">Student ID:</label>
-                <input type="text" id="student_id" name="student_id" class="form-control" required pattern="^[Ee]{1}\d{2}-\d{5}$" title="Format: E20-00287">
-                <div class="invalid-feedback">
-                    Please enter a valid Student ID (e.g., E20-00287).
-                </div>
-            </div>
-            <div class="right-section">
-            <h2>Login to E-Vote</h2>
-            <div class="scanner-info">
-                <div class="scanner-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
-                        <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
-                        <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
-                        <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
-                        <rect x="7" y="7" width="10" height="10"></rect>
-                    </svg>
-                </div>
-                <div class="scanner-text">
-                    <h3>Quick Login Available</h3>
-                    <p>Simply tap your ID card on the scanner to login instantly</p>
-                </div>
-            </div>
-
-            <?php if ($message): ?>
-            <div class="alert alert-warning">
-                <?php echo $message; ?>
-            </div>
-            <?php endif; ?>
-            
-            <form method="POST" action="">
-                <div class="input-group">
-                    <label for="student_id">Student ID</label>
-                    <div class="input-with-icon">
-                        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="16" rx="2"/>
-                            <line x1="7" y1="8" x2="17" y2="8"/>
-                            <line x1="7" y1="12" x2="17" y2="12"/>
-                            <line x1="7" y1="16" x2="12" y2="16"/>
-                        </svg>
-                        <input type="text" id="student_id" name="student_id" placeholder="Enter your Student ID" required>
-                    </div>
-                </div>
-                <button type="submit">
-                    <span>Login</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                        <polyline points="10 17 15 12 10 7"/>
-                        <line x1="15" y1="12" x2="3" y2="12"/>
-                    </svg>
-                </button>
-            </form>
-            <div class="register-prompt">
-                <p>Don't have an account? <a href="register.php">Register here</a></p>
-            </div>
-        </div>
-    </div>strap JS Bundle -->
+       
+    <!--strap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
