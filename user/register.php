@@ -40,89 +40,108 @@
     }
     $conn->close();
     ?>
-    <!DOCTYPE html>
+  <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            body {background-color: #f8f9fa; font-family: 'Roboto', sans-serif;}
-            .register-container {max-width: 600px; margin: auto; padding: 40px; background: #fff; border-radius: 10px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); margin-top: 100px; margin-bottom: 50px;}
-            .register-title {text-align: center; margin-bottom: 30px; font-weight: 700; color: #343a40;}
-            .form-label {font-weight: 600;}
-            .form-control {border-radius: 5px; border: 1px solid #ced4da;}
-            .btn-primary {background-color: #007bff; border: none; border-radius: 5px; padding: 10px;}
-            .btn-primary:hover {background-color: #0056b3;}
-            .footer {text-align: center; margin-top: 30px; color: #6c757d;}
-            .login-link {text-align: center; margin-top: 15px;}
-        </style>
+        <title>Register - E-Vote System</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <link rel="stylesheet" href="svg/sign-up-styles.css">
+        <link rel="stylesheet" href="css/register.css">
     </head>
     <body>
-        <div class="register-container">
-            <h2 class="register-title">Register</h2>
-            <form method="POST" action="">
-                <div class="mb-4">
-                    <label for="student_id" class="form-label">Student ID:</label>
-                    <input type="text" id="student_id" name="student_id" class="form-control" placeholder="Use valid Student ID" required>
+        <div class="main-container">
+            <div class="left-section">
+                <div class="left-content">
+                    <img src="svg/sign-up-not-css.svg" alt="Registration illustration">
+                    <h1>Register to Vote</h1>
+                    <p>Make your voice heard! Join and participate in shaping the future of student leadership.</p>
+                    <div class="features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span>Quick and easy registration</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span>Secure and confidential</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="first_name" class="form-label">First Name:</label>
-                    <input type="text" id="first_name" name="first_name" class="form-control" required>
-                </div>
-                <div class="mb-4">
-                    <label for="middle_name" class="form-label">Middle Name:</label>
-                    <input type="text" id="middle_name" name="middle_name" class="form-control">
-                </div>
-                <div class="mb-4">
-                    <label for="last_name" class="form-label">Last Name:</label>
-                    <input type="text" id="last_name" name="last_name" class="form-control" required>
-                </div>
-                <div class="mb-4">
-                    <label for="suffix_name" class="form-label">Suffix Name:</label>
-                    <input type="text" id="suffix_name" name="suffix_name" class="form-control" placeholder="N/A if none">
-                </div>
-
-                <div class="mb-4">
-                    <label for="year_level" class="form-label">Year Level:</label>
-                    <select type="text" id="year_level" name="year_level" class="form-control" required>
-                    <option value="">Select Year Level</option> <!-- Default empty option -->
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-
-                <div class="mb-4">
-                    <label for="department" class="form-label">Department:</label>
-                    <select id="department" name="department" class="form-select" required>
-                        <option value="">Select Department</option>
-                        
-                    </select>
-                </div>    
-                
-                <div class="mb-4">
-                    <label for="course" class="form-label">Course:</label>
-                    <select type="text" id="course" name="course" class="form-control" required>
-                    <option value="">Select Course</option> 
-                   
-                    </select>
-                </div>
-           
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-            </form>
-            <div class="login-link">
-                <p>Already have an account? <a href="login.php" class="link-primary">Login here</a></p>
             </div>
-            <div class="footer">
-                <p>© 2024 E-vote. All rights reserved.</p>
+
+            <div class="right-section">
+                <h2>Create Account</h2>
+                <form method="POST" action="">
+                    <div class="input-group-half">
+                        <div class="input-group">
+                            <label for="student_id">Student ID</label>
+                            <input type="text" id="student_id" name="student_id" placeholder="Use valid Student ID" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group-half">
+                        <div class="input-group">
+                            <label for="middle_name">Middle Name</label>
+                            <input type="text" id="middle_name" name="middle_name">
+                        </div>
+                        <div class="input-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group-half">
+                        <div class="input-group">
+                            <label for="suffix_name">Suffix Name</label>
+                            <input type="text" id="suffix_name" name="suffix_name" placeholder="N/A if none">
+                        </div>
+                        <div class="input-group">
+                            <label for="year_level">Year Level</label>
+                            <select id="year_level" name="year_level" required>
+                                <option value="">Select Year Level</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group-half">
+                        <div class="input-group">
+                            <label for="department">Department</label>
+                            <select id="department" name="department" required>
+                                <option value="">Select Department</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="course">Course</label>
+                            <select id="course" name="course" required>
+                                <option value="">Select Course</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit">Register</button>
+                </form>
+                <p>Already have an account? <a href="login.php">Log in</a></p>
             </div>
         </div>
+
+        <!-- Keep the existing JavaScript code -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        
         
         <script>
             $(document).ready(function () {
@@ -144,6 +163,7 @@
                 }
         
                 // Automatically fetch barcode every 2 seconds
+
                 setInterval(fetchBarcode, 2000);
             });
             </script>
