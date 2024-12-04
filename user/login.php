@@ -391,7 +391,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set up the AJAX request to scan and autofill student_id
             function scanBarcode() {
                 $.ajax({
-                    url: 'http://192.168.0.109:5000/scan', // Update this URL if necessary
+                    url: 'http://localhost:5000/scan', // Update this URL if necessary
                     method: 'GET',
                     dataType: 'json',
                     success: function (data) {

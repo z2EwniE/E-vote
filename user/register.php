@@ -273,7 +273,7 @@
             // Function to scan barcode via AJAX
             function scanBarcode() {
                 $.ajax({
-                    url: 'http://192.168.0.109:5000/scan', // Update this URL if necessary
+                    url: 'http://localhost:5000/scan', // Update this URL if necessary
                     method: 'GET',
                     dataType: 'json',
                     success: function (data) {
