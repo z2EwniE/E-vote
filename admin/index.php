@@ -199,14 +199,10 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Total Votes</h5>
@@ -229,7 +225,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
 													} elseif ($row['department'] === 'CTE') {
 														$colorClass = 'text-primary'; // Blue for CTE
 													} elseif ($row['department'] === 'CBME') {
-														$colorClass = 'text-success'; // Green for CBME
+														$colorClass = 'text-warning'; // Yellow for CBME
 													}
 												?>
                                                 <tr>
@@ -245,20 +241,17 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-6 col-lg-6 col-xxl-6 d-flex">
                             <div class="card flex-fill w-100">
                                 <div class="card-header">
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                      
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Monthly Registered Students</h5>
@@ -280,14 +273,10 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                     <div class="card-actions float-end">
                                         <div class="dropdown position-relative">
                                             <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
+                                                <i class="align-middle" ></i>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                     <h5 class="card-title mb-0">Vote Logs</h5>
@@ -516,7 +505,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                     backgroundColor: [
                         window.theme.danger,
                         window.theme.primary,
-                        window.theme.success,
+                        window.theme.warning,
                         "#E8EAED"
                     ],
                     borderWidth: 5,

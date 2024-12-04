@@ -341,19 +341,27 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="js/app.js"></script>
 
     <script>
-    const selectedCandidates = {};
+  const selectedCandidates = {};
 
-    function selectCard(positionName, candidateId) {
-        const normalizedPositionName = positionName.replace(/\s+/g, '_');
+function selectCard(positionName, candidateId) {
+    const normalizedPositionName = positionName.replace(/\s+/g, '_');
 
+   
+    if (selectedCandidates[normalizedPositionName] === candidateId) {
+       
+        $(`#${normalizedPositionName}-candidate${candidateId}`).removeClass('selected');
+        delete selectedCandidates[normalizedPositionName]; // Remove from the selected candidates
+    } else {
+       
         if (selectedCandidates[normalizedPositionName]) {
-            $(`#${normalizedPositionName}-candidate${selectedCandidates[normalizedPositionName]}`).removeClass(
-                'selected');
+            $(`#${normalizedPositionName}-candidate${selectedCandidates[normalizedPositionName]}`).removeClass('selected');
         }
 
+     
         $(`#${normalizedPositionName}-candidate${candidateId}`).addClass('selected');
         selectedCandidates[normalizedPositionName] = candidateId;
     }
+}
 
     // Fetch voting data when the page loads
     $(document).ready(function() {
@@ -387,7 +395,7 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                      data-position-id="${position.position_id}" 
                                       data-partylist-id="${candidate.partylist_id || 'None'}" 
                                      id="${normalizedPositionName}-candidate${candidate.candidate_id}">
-                                    <img src="${candidate.image_path}" alt="${candidate.name || 'Candidate Image'}" 
+                                    <img src="${candidate.candidate_image_path}" alt="${candidate.name || 'Candidate Image'}" 
                                     onerror="this.src='https://via.placeholder.com/90';">
 
                                     <div class="card-body">

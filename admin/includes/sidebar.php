@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class='sidebar-brand' href='/'>
+        <a class='sidebar-brand'>
 					<span class="sidebar-brand-text align-middle">
 						E-vote System
 						<sup><small class="badge bg-success text-uppercase">ISPSC</small></sup>
