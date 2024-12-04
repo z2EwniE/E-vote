@@ -15,6 +15,7 @@ body {
 			position: relative;
 		}
 
+        
 		.section-title::after {
 			content: '';
 			width: 50px;
