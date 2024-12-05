@@ -111,12 +111,13 @@ include_once __DIR__ . "/../config/init.php";
 									<h5 class="card-title mb-0">Registered Candidates</h5>
 								</div>  
 								<div class="card-body">
+                                    <!--
                                 <div class="row mb-3">
                                   <div class="col-md-6">
                              <input type="text" id="searchStudent" class="form-control" 
                                     placeholder="Search by Student ID Number ONLY" onkeyup="restrictInput(event); searchTable()"
                                     maxlength="9">
-                              </div>
+                              </div> -->
                              </div>
                              <div class="container mt-5">
                              <table class="table table-responsive table-striped" id="studentTable" style="width:100%">
