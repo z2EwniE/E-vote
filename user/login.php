@@ -166,6 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
             color: #856404;
+          
         }
 
         @media (max-width: 768px) {

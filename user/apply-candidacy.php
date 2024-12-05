@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label for="partylist" class="form-label">Partylist</label>
                             <select class="form-select" id="partylist" name="partylist" required>
-                                <option value="">Select Position</option>
+                                <option value="">Select Partylist</option>
                                 <?php foreach ($partylists as $partylist): ?>
                                 <option value="<?php echo $partylist['partylist_id']; ?>">
                                     <?php echo htmlspecialchars($partylist['partylist_name']); ?></option>
