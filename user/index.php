@@ -427,7 +427,7 @@ function selectCard(positionName, candidateId) {
     // Show confirmation modal
     $('#submitVote').on('click', function() {
         if (Object.keys(selectedCandidates).length === 0) {
-            alert('Please select candidates before submitting your vote.');
+            alert('Please select at least One candidate before submitting your vote.');
             return;
         }
         populateConfirmationModal();
