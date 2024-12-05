@@ -9,23 +9,69 @@ if (!$login->isLoggedIn()) {
 	header('Location: login.php' );
 }
 
+// Add these functions at the top after the includes
+function getEnrolleesCount() {
+    $csvFile = __DIR__ . '/enrolledstudent.csv';
+    if (!file_exists($csvFile) || !is_readable($csvFile)) {
+        return 0;
+    }
+    
+    $enrolledCount = 0;
+    if (($handle = fopen($csvFile, "r")) !== FALSE) {
+        // Skip header row
+        fgetcsv($handle, 1000, ",");
+        
+        // Count remaining rows where enrolled = "Y"
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            if (isset($data[6]) && trim($data[6]) === "Y") {
+                $enrolledCount++;
+            }
+        }
+        fclose($handle);
+    }
+    return $enrolledCount;
+}
+
+function getRegisteredStudentsCount() {
+    global $db;
+    $stmt = $db->prepare("SELECT COUNT(DISTINCT student_id) as count FROM students");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+}
+
+function getTotalVotesCount() {
+    global $db;
+    $stmt = $db->prepare("SELECT COUNT(*) as count FROM votes");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+}
+
+// Get counts
+$enrollees_count = getEnrolleesCount();
+$registered_count = getRegisteredStudentsCount();
+$unregistered_count = $enrollees_count - $registered_count;
 
 function countVotesByDepartment() {
 	global $db;
-	$stmt = $db->prepare("SELECT  department.department_name, COUNT(*) AS vote_count FROM votes INNER JOIN students ON students.id = votes.student_id RIGHT JOIN department ON department.department_id = students.department WHERE department.department_id GROUP BY department.department_id");
+	$stmt = $db->prepare("
+		SELECT 
+			department.department_name, 
+			COUNT(votes.student_id) AS vote_count 
+		FROM department 
+		LEFT JOIN students ON department.department_id = students.department 
+		LEFT JOIN votes ON students.id = votes.student_id 
+		GROUP BY department.department_id
+	");
 	$stmt->execute();
-	$row =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$data = [];
+	$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$data = [];
 	foreach($row as $r) {
 		$data[] = [
 			"department" => preg_replace('/[^A-Z]/', '', $r['department_name']),
-			"vote_count" => $r['vote_count']
+			"vote_count" => (int)$r['vote_count']
 		];
-		
 	}
-
 	return $data;
-
 }
 $votes = countVotesByDepartment();
 $department_labels = array_column($votes, 'department');
@@ -99,7 +145,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h1 class="mt-1 mb-3">2382</h1>
+                                                <h1 class="mt-1 mb-3"><?= $enrollees_count ?></h1>
                                             </div>
                                         </div>
                                         <div class="card">
@@ -115,7 +161,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h1 class="mt-1 mb-3">1300</h1>
+                                                <h1 class="mt-1 mb-3"><?= $unregistered_count ?></h1>
 
                                             </div>
                                         </div>
@@ -134,9 +180,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h1 class="mt-1 mb-3">
-                                                    <?php echo isset($total_count) ? $total_count : 'Data not available'; ?>
-                                                </h1>
+                                                <h1 class="mt-1 mb-3"><?= $registered_count ?></h1>
 
                                             </div>
                                         </div>
@@ -154,7 +198,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h1 class="mt-1 mb-3" id="voteCount">0</h1>
+                                                <h1 class="mt-1 mb-3" id="voteCount"><?= getTotalVotesCount() ?></h1>
 
                                             </div>
                                         </div>

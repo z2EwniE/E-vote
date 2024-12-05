@@ -164,7 +164,11 @@ foreach ($stmt as $row) {
     echo "<td>" . htmlspecialchars($row['partylist_name']) . "</td>";
     echo "<td>
             <div class='btn-group'>
-                <button class='btn btn-danger'><i class='fa fa-trash'></i></button>
+                <button class='btn btn-danger delete-candidate' 
+                        data-id='" . htmlspecialchars($row['student_id']) . "'
+                        data-name='" . htmlspecialchars($name) . "'>
+                    <i class='fa fa-trash'></i>
+                </button>
             </div>
           </td>";
     echo "</tr>";
@@ -300,6 +304,45 @@ foreach ($stmt as $row) {
     });
         }
 
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('.delete-candidate').click(function() {
+            const studentId = $(this).data('id');
+            const studentName = $(this).data('name');
+            const row = $(this).closest('tr');
+            
+            if (confirm(`Are you sure you want to delete ${studentName} from candidates?`)) {
+                $.ajax({
+                    url: 'process/delete_candidate.php',
+                    type: 'POST',
+                    data: {
+                        student_id: studentId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            row.fadeOut(400, function() {
+                                $(this).remove();
+                            });
+                            alert('Candidate deleted successfully');
+                        } else {
+                            alert(response.message || 'Error deleting candidate');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Ajax Error:', {
+                            status: status,
+                            error: error,
+                            response: xhr.responseText
+                        });
+                        alert('Error connecting to the server. Please try again.');
+                    }
+                });
+            }
+        });
+    });
     </script>
 
     </body>
