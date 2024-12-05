@@ -71,6 +71,14 @@
                     <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Total Votes</span>
                 </a>
             </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="election-results.php">
+                    <i class="align-middle" data-feather="file-text"></i> 
+                    <span class="align-middle">Election Results</span>
+                </a>
+            </li>
+
             <ul class="sidebar-nav">
             <li class="sidebar-header">
                Programs
@@ -109,6 +117,9 @@
                     <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
                 </a>
             </li>
+
+         
+
 
    
     </div>
