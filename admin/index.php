@@ -400,7 +400,7 @@ $vote_count_labels = array_column($votes, 'vote_count');
                         <div class="col-6 text-end">
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                <a class="text-muted" href="#">ISPSC - Tagudin Campus</a>
+                                <a class="text-muted" >ISPSC - Tagudin Campus</a>
                                 </li>
                             </ul>
                         </div>

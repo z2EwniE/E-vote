@@ -112,13 +112,14 @@
         </ul>
         </li>
 
+        <!--
             <li class="sidebar-item">
                 <a class='sidebar-link' href='settings.php'>
                     <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
                 </a>
             </li>
 
-         
+-->
 
 
    
